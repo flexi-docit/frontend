@@ -1,7 +1,6 @@
 
 <template>
     <div class="notFound-container">
-        <img :src="logo" />
         <h1>OOPS! The link you're looking for is either broken or has been removed. Error: 404</h1>
         <div class="footer" :style="image">
             <p>“Sometimes being lost is the best way to find yourself.”<br />
@@ -11,12 +10,10 @@
 </template>
 
 <script>
-import logo from "../assets/common/logo.svg";
 import footer from "../assets/404/footer.svg";
 export default {
     data() {
         return {
-            logo,
             image: { backgroundImage: `url(${footer})` }
         }
     }
@@ -29,6 +26,7 @@ export default {
 }
 
 .footer {
+    z-index: -1;
     background-repeat: no-repeat;
     background-size: cover;
     position: absolute;
