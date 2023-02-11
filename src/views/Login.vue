@@ -113,6 +113,7 @@ export default {
     height: 100vh;
 
     @media screen and (max-width: 768px) {
+        top: 80px;
         width: 100vw;
     }
 }
@@ -140,7 +141,10 @@ export default {
 }
 
 #logo-icon-img {
+    height: 80px;
+    width: 96px;
     @media screen and (max-width: 768px) {
+        margin-top: 100px;
         height: 40px;
         width: 48px;
     }
@@ -177,7 +181,7 @@ export default {
     font-size: 30px;
     height: 48px;
     width: 474px;
-    border-radius: 18px;
+    border-radius: 7px;
     border-width: 0px;
 
     @media screen and (max-width: 768px) {
