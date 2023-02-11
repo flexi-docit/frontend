@@ -22,7 +22,7 @@
 </template>
 
 <script>
-import logo from "../assets/common/logo.svg";
+import logo from "../assets/common/logo-name.svg";
 
 export default {
     data() {
@@ -49,12 +49,18 @@ export default {
 }
 
 .navbar-desktop {
+    height: 90px;
     display: flex;
     align-items: center;
     justify-content: space-between;
     padding: 15px 60px 15px 60px;
     background-color: white;
     box-shadow: 0px 5px 20px lightgray;
+
+    >a>img {
+        height: 100%;
+        width: 150px;
+    }
 
     @media screen and (max-width: 768px) {
         display: none;
@@ -75,7 +81,7 @@ export default {
         display: flex;
         flex-direction: column;
         padding: 0;
-        height: 80px;
+        height: 85px;
         background-color: white;
         box-shadow: 0px 5px 20px lightgray;
     }
@@ -105,8 +111,8 @@ export default {
         align-items: flex-start;
         row-gap: 20px;
         width: 100vw;
-        height: calc(100vh - 80px);
-        margin-top: 80px;
+        height: calc(100vh - 85px);
+        margin-top: 85px;
         z-index: 100;
         opacity: 1;
         background-color: white;
