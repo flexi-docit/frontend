@@ -1,31 +1,25 @@
 <template>
     <div class='login-container'>
-        <div id="logo-name-container">
-            <img :src="logoname" id="logo-name-img" />
-        </div>
+
+        <div class="bg-img" :style="background"></div>
         <form class="login" @submit.prevent="handleSubmit">
-            <div class="bg-img" :style="background"></div>
-            <img :src="logoicon" id="logo-icon-img" /><br />
+            <img :src="logo" class="logo-icon-img" /><br />
+            <label for="email" class="login-text" id="uname">Email</label>
+            <input class="login-input" id="email" type="email" v-model.trim="email" />
+            <label for="password" class="login-text">Password</label>
+            <input class="login-input" id="password" type="password" v-model.trim="password" />
 
-            <label for="email" class="login-text" id="uname">Email<br /></label>
-            <input class="login-input" id="email" type="email" v-model.trim="email" /><br />
-            <label for="password" class="login-text">Password<br /></label>
-            <input class="login-input" id="password" type="password" v-model.trim="password" /><br />
-
-            <p class="login-text" id="login-forgot">Forgot Password?<br /></p>
-
-            <button id='sign-in' type="submit">SIGN IN</button>
+            <p>Forgot Password?<br /></p>
+            <button type="submit">SIGN IN</button>
         </form>
         <div>
-
         </div>
     </div>
 </template>
 
 <script>
 import router from "@/router";
-import logoicon from "../assets/common/logo-icon.svg";
-import logoname from "../assets/common/logo-name.svg";
+import logo from "../assets/common/logo-complete.svg";
 import bg from "../assets/login/bg.svg";
 
 import { localStorageConstants } from "../utils/constants";
@@ -33,8 +27,7 @@ import { localStorageConstants } from "../utils/constants";
 export default {
     data() {
         return {
-            logoicon,
-            logoname,
+            logo,
             background: { backgroundImage: `url(${bg})` },
 
             email: '',
@@ -100,126 +93,68 @@ export default {
 .login-container {
     font-family: 'Roboto';
     display: flex;
-
-}
-
-.bg-img {
-    background-size: cover;
-    position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: -10;
-    width: 50vw;
-    height: 100vh;
+    width: 100vw;
+    height: calc(100vh - 90px);
+    overflow: hidden;
 
     @media screen and (max-width: 768px) {
-        top: 80px;
-        width: 100vw;
+        height: calc(100vh - 85px);
     }
-}
 
-#logo-name-container {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    align-content: center;
-    left: 0;
-    width: 50vw;
 
-    @media screen and (max-width: 768px) {
-        display: none;
+    >form {
+        display: flex;
+        flex-direction: column;
+        row-gap: 10px;
+        align-items: center;
+        justify-content: center;
+        width: 50%;
+        padding: 15px 100px 15px 100px;
+        height: 100%;
+
+        @media screen and (max-width: 768px) {
+            width: 100%;
+        }
+
+        >.logo-icon-img {
+            height: 120px;
+        }
+
+        >input {
+            background-color: #EEEEF6;
+            border: none;
+            padding: 10px;
+            width: 100%;
+        }
+
+        >.login-text {
+            font-weight: 500;
+            font-size: 22px;
+            text-align: left;
+            width: 100%;
+            margin-left: 20px;
+        }
+
+        >button {
+            background-color: #DB1A32;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            width: 60%;
+            min-height: 40px;
+            margin-top: 40px;
+        }
     }
-}
 
-.login {
-    flex: 1;
-    width: 50vw;
+    >.bg-img {
+        background-size: cover;
+        background-repeat: no-repeat;
+        background-position: center center;
+        width: 50%;
 
-    @media screen and (max-width: 768px) {
-        height: 100vh;
-    }
-}
-
-#logo-icon-img {
-    height: 80px;
-    width: 96px;
-    @media screen and (max-width: 768px) {
-        margin-top: 100px;
-        height: 40px;
-        width: 48px;
-    }
-}
-
-#uname {
-    margin-top: 60px;
-
-    @media screen and (max-width: 768px) {
-        margin-top: 30px;
-    }
-}
-
-.login-text {
-    color: #FFFFFF;
-    font-weight: 500;
-    font-size: 27px;
-    font-style: normal;
-    text-align: center;
-    margin-top: 15px;
-    margin-bottom: 15px;
-    margin-right: 330px;
-
-    @media screen and (max-width: 768px) {
-        margin-right: 150px;
-        font-size: 15px;
-        margin-top: 10px;
-        margin-bottom: 10px;
-    }
-}
-
-.login-input {
-    padding-left: 15px;
-    font-size: 30px;
-    height: 48px;
-    width: 474px;
-    border-radius: 7px;
-    border-width: 0px;
-
-    @media screen and (max-width: 768px) {
-        padding-left: 10px;
-        font-size: 15px;
-        width: 237px;
-        height: 24px;
-    }
-}
-
-#login-forgot {
-    font-size: 22px;
-    margin-right: 0px;
-    margin-top: 50px;
-    margin-bottom: 75px;
-
-    @media screen and (max-width: 768px) {
-        margin-top: 20px;
-        margin-bottom: 40px;
-        font-size: 15px;
-    }
-}
-
-#sign-in {
-    height: 60px;
-    width: 284px;
-    font-family: 'Roboto';
-    font-style: normal;
-    font-weight: 400;
-    font-size: 26px;
-    border-radius: 18px;
-    border-width: 0px;
-
-    @media screen and (max-width: 768px) {
-        width: 142px;
-        height: 33px;
-        border-radius: 52px;
-        font-size: 16px;
+        @media screen and (max-width: 768px) {
+            display: none;
+        }
     }
 }
 </style>
