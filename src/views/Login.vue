@@ -1,9 +1,9 @@
 <template>
     <div class='login-container'>
+
         <div class="bg-img" :style="background"></div>
         <form class="login" @submit.prevent="handleSubmit">
             <img :src="logo" class="logo-icon-img" /><br />
-
             <label for="email" class="login-text" id="uname">Email</label>
             <input class="login-input" id="email" type="email" v-model.trim="email" />
             <label for="password" class="login-text">Password</label>
