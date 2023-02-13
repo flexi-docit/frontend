@@ -26,6 +26,18 @@ const routes = [
     component: Login,
   },
   {
+    path: "/forgot-password",
+    name: "ForgotPassword",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/ForgotPassword.vue"),
+  },
+  {
+    path: "/reset-password/:token?",
+    name: "ResetPassword",
+    component: () =>
+      import(/* webpackChunkName: "about" */ "../views/ResetPassword.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
     component: () =>
       import(/* webpackChunkName: "404" */ "../views/PageNotFound.vue"),
