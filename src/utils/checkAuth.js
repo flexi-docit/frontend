@@ -12,9 +12,10 @@ const checkAndManageAuth = (stateStore, router) => {
     stateStore.commit("setRole", role);
     stateStore.commit("setID", ID);
   } else {
-    window.alert("You have been logged out, please log in again");
+    // window.alert("You have been logged out, please log in again");
     stateStore.commit("setLoggedIn", false);
-    stateStore.commit("setRole", null), stateStore.commit("setID", null);
+    stateStore.commit("setRole", null);
+    stateStore.commit("setID", null);
     localStorage.removeItem(tokenKey);
     localStorage.removeItem(roleKey);
     localStorage.removeItem(IDKey);

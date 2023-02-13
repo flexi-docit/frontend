@@ -6,7 +6,7 @@
         <div class="forgot-password-right">
             <h1>Forgot <br />Your Password?</h1>
             <form @submit.prevent="handleSubmit">
-                <input class="login-input" id="email" type="email" v-model.trim="email" placeholder="Enter Email" />
+                <input class="forgot-password-input" id="email" type="email" v-model.trim="email" placeholder="Enter Email" />
                 <button type="submit">Submit</button>
                 <router-link to="/login">
                     <p>&larr; Back to Sign In<br /></p>

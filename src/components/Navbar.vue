@@ -55,7 +55,7 @@ export default {
     justify-content: space-between;
     padding: 15px 60px 15px 60px;
     background-color: white;
-    box-shadow: 0px 5px 20px lightgray;
+    box-shadow: 0px 5px 200px rgba(0, 0, 0, 0.2);
 
     >a>img {
         height: 100%;
@@ -83,7 +83,7 @@ export default {
         padding: 0;
         height: 85px;
         background-color: white;
-        box-shadow: 0px 5px 20px lightgray;
+        box-shadow: 0px 5px 200px rgba(0, 0, 0, 0.2);
     }
 
     .navbar-mobile-default {
