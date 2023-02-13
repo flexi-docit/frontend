@@ -1,19 +1,20 @@
-# app
+# DocIt!
 
-## Project setup
+## Project Setup
 ```
 npm install
 ```
 
-### Compiles and hot-reloads for development
+### Start with hot-reloads for development
 ```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
+npm start
 ```
 
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+### Notes for viewing pages
+- `ResetPassword.vue` - Comment out in `beforeCreate()`
+```
+if (!token || !JWTRegex.test(token)) {
+    alert("Access denied");
+    router.push("/");
+}
+```
