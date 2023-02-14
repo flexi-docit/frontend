@@ -1,26 +1,25 @@
 <template>
-    <div class='login-container'>
-
-        <div class="bg-img" :style="background"></div>
-        <form class="login" @submit.prevent="handleSubmit">
+    <main class='login-container'>
+        <figure class="login-container-left">
+            <img class="login-bg-img" :src="background" alt="" />
+        </figure>
+        <form class="login-form" @submit.prevent="handleSubmit">
             <img :src="logo" class="logo-icon-img" /><br />
-            <label for="email" class="login-text" id="uname">Email</label>
+            <label for="email" class="login-label">Email</label>
             <input class="login-input" id="email" type="email" v-model.trim="email" />
-            <label for="password" class="login-text">Password</label>
-            <input class="login-input" id="password" type="password" v-model.trim="password" />
+            <label for="password" class="login-label">Password</label>
+            <input class="login-input" id="password" type="password" v-model.trim="password" required />
 
             <p>Forgot Password?<br /></p>
             <button type="submit">SIGN IN</button>
         </form>
-        <div>
-        </div>
-    </div>
+    </main>
 </template>
 
 <script>
 import router from "@/router";
 import logo from "../assets/common/logo-complete.svg";
-import bg from "../assets/login/bg.svg";
+import background from "../assets/login/bg.svg";
 
 import { localStorageConstants } from "../utils/constants";
 
@@ -28,7 +27,7 @@ export default {
     data() {
         return {
             logo,
-            background: { backgroundImage: `url(${bg})` },
+            background,
 
             email: '',
             password: '',
@@ -102,7 +101,7 @@ export default {
     }
 
 
-    >form {
+    >.login-form {
         display: flex;
         flex-direction: column;
         row-gap: 10px;
@@ -120,14 +119,8 @@ export default {
             height: 120px;
         }
 
-        >input {
-            background-color: #EEEEF6;
-            border: none;
-            padding: 10px;
-            width: 100%;
-        }
 
-        >.login-text {
+        >.login-label {
             font-weight: 500;
             font-size: 22px;
             text-align: left;
@@ -144,16 +137,26 @@ export default {
             min-height: 40px;
             margin-top: 40px;
         }
+
+        >input {
+            background-color: #EEEEF6;
+            border: none;
+            padding: 10px;
+            width: 100%;
+        }
     }
 
-    >.bg-img {
-        background-size: cover;
-        background-repeat: no-repeat;
-        background-position: center center;
+    >.login-container-left {
         width: 50%;
 
         @media screen and (max-width: 768px) {
             display: none;
+        }
+
+        >img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
         }
     }
 }

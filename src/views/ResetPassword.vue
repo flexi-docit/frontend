@@ -1,19 +1,20 @@
 <template>
-    <div class="reset-password-container">
-        <form @submit.prevent="handleSubmit">
+    <main class="reset-password-container">
+        <form class="reset-password-form" @submit.prevent="handleSubmit">
             <p>!</p>
             <h1>Reset Password</h1>
-            <div class="input">
+            <div class="reset-form-input">
                 <label for="password">New Password</label>
-                <input class="reset-password-input" id="password" type="password" v-model.trim="password" />
+                <input class="reset-password-input" id="password" type="password" v-model.trim="password" required />
             </div>
-            <div class="input">
+            <div class="reset-form-input">
                 <label for="confirmPassword">Confirm Password</label>
-                <input class="reset-password-input" id="confirmPassword" type="text" v-model.trim="confirmPassword" />
+                <input class="reset-password-input" id="confirmPassword" type="text" v-model.trim="confirmPassword"
+                    required />
             </div>
             <button type="submit">SUBMIT</button>
         </form>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -28,7 +29,7 @@ export default {
     },
     methods: {
         async handleSubmit() {
-            if(password !== confirmPassword) return alert("Passwords do not match");
+            if (password !== confirmPassword) return alert("Passwords do not match");
 
             const token = this.$route.params.token;
             const url = `http://localhost:8000/api/v1/auth/reset-password/${token}`;
@@ -59,13 +60,13 @@ export default {
         }
     },
     beforeCreate() {
-        const token = this.$route.params.token;
-        const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
+        // const token = this.$route.params.token;
+        // const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
 
-        if (!token || !JWTRegex.test(token)) {
-            alert("Access denied");
-            router.push("/");
-        }
+        // if (!token || !JWTRegex.test(token)) {
+        //     alert("Access denied");
+        //     router.push("/");
+        // }
     }
 }
 </script>
@@ -80,7 +81,7 @@ export default {
     width: 100vw;
     height: calc(100vh - 90px);
 
-    >form {
+    >.reset-password-form {
         display: flex;
         flex-direction: column;
         align-items: flex-start;
@@ -135,7 +136,7 @@ export default {
             }
         }
 
-        >div {
+        >.reset-password-input {
             display: flex;
             flex-direction: column;
             width: 100%;

@@ -1,19 +1,20 @@
 <template>
-    <div class='forgot-password-container'>
-        <div class="forgot-password-left">
-            <img :src="mainSVG" />
-        </div>
+    <main class='forgot-password-container'>
+        <figure class="forgot-password-left">
+            <img :src="mainSVG" alt="" />
+        </figure>
         <div class="forgot-password-right">
-            <h1>Forgot <br />Your Password?</h1>
-            <form @submit.prevent="handleSubmit">
-                <input class="forgot-password-input" id="email" type="email" v-model.trim="email" placeholder="Enter Email" />
+            <h1 class="forgot-password-heading">Forgot <br />Your Password?</h1>
+            <form class="forgot-password-form" @submit.prevent="handleSubmit">
+                <input class="forgot-password-input" id="email" type="email" placeholder="Enter Email"
+                    v-model.trim="email" />
                 <button type="submit">Submit</button>
                 <router-link to="/login">
                     <p>&larr; Back to Sign In<br /></p>
                 </router-link>
             </form>
         </div>
-    </div>
+    </main>
 </template>
 
 <script>
@@ -102,14 +103,14 @@ export default {
             font-size: 2vw;
         }
 
-        >h1 {
+        >.forgot-password-heading {
             font-size: 2.5em;
             color: rgba(152, 0, 71, 1);
             font-weight: 900;
             text-align: left;
         }
 
-        >form {
+        >.forgot-password-form {
             display: flex;
             flex-direction: column;
             row-gap: 20px;
