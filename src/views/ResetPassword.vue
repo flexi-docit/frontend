@@ -28,6 +28,8 @@ export default {
     },
     methods: {
         async handleSubmit() {
+            if(password !== confirmPassword) return alert("Passwords do not match");
+
             const token = this.$route.params.token;
             const url = `http://localhost:8000/api/v1/auth/reset-password/${token}`;
             const data = { password: this.password, confirmPassword: this.confirmPassword };
@@ -43,11 +45,11 @@ export default {
                 const formattedResponse = await response.json();
 
                 if (formattedResponse.status) {
-                    alert("Email sent, please check your email for further steps");
+                    alert("Password has been reset, redirecting to login");
                     router.push("/login");
                 }
                 else {
-                    alert(formattedResponse.message + " email invalid/not found");
+                    alert(formattedResponse.message);
                 }
 
             } catch (error) {
