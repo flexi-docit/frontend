@@ -1,7 +1,7 @@
 <template>
-    <div class="sticky">
+    <header class="sticky">
         <nav class="navbar-desktop">
-            <router-link to="/"><img :src="logo" /></router-link>
+            <router-link to="/"><img :src="logo" alt="docit logo, click to go home" /></router-link>
             <div class="navbar-desktop-menu">
                 <router-link to="/about">About</router-link>
                 <router-link to="/contact">Contact</router-link>
@@ -18,7 +18,7 @@
                 <router-link to="/contact" @click.native="closeMenu">Contact</router-link>
             </div>
         </nav>
-    </div>
+    </header>
 </template>
 
 <script>
@@ -58,7 +58,6 @@ export default {
     box-shadow: 0px 5px 200px rgba(0, 0, 0, 0.2);
 
     >a>img {
-        height: 100%;
         width: 150px;
     }
 
