@@ -52,8 +52,8 @@ export default {
     position: absolute;
     bottom: 0;
     width: 100%;
-    height: 300px;
-    padding: 80px 10vw 100px 10vw;
+    height: fit-content;
+    padding: 40px 10vw 60px 10vw;
 }
 
 h1,
@@ -61,7 +61,7 @@ p {
     font-size: 2.2rem;
 
     @media screen and (max-width: 768px) {
-        font-size: 1.8rem;
+        font-size: 1.7rem;
     }
 
     @media screen and (max-width: 425px) {
