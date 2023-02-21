@@ -1,5 +1,6 @@
 import Vue from "vue";
 import Vuex from "vuex";
+import { mutationNames } from "./mutationTypes";
 
 Vue.use(Vuex);
 
@@ -12,14 +13,14 @@ const authenticationModule = {
     },
   },
   mutations: {
-    setID(state, id) {
-      state.id = id;
+    [mutationNames.setID](state, id) {
+      Vue.set(state.user, "id", id);
     },
-    setRole(state, role) {
-      state.role = role;
+    [mutationNames.setRole](state, role) {
+      Vue.set(state.user, "role", role);
     },
-    setLoggedIn(state, loggedInStatus) {
-      state.loggedIn = loggedInStatus;
+    [mutationNames.setLoggedIn](state, loggedInStatus) {
+      Vue.set(state.user, "loggedIn", loggedInStatus);
     },
   },
 };

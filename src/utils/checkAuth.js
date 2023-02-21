@@ -1,7 +1,4 @@
-import { localStorageConstants } from "./constants";
-
-const { tokenKey, roleKey, IDKey } = localStorageConstants;
-const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
+import { JWTIdentifier, JWTRegex } from "./constants";
 
 const checkAndManageAuth = (stateStore, router) => {
   const token = localStorage.getItem(tokenKey);

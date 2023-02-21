@@ -60,13 +60,13 @@ export default {
         }
     },
     beforeCreate() {
-        // const token = this.$route.params.token;
-        // const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
+        const token = this.$route.params.token;
+        const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
 
-        // if (!token || !JWTRegex.test(token)) {
-        //     alert("Access denied");
-        //     router.push("/");
-        // }
+        if (!token || !JWTRegex.test(token)) {
+            alert("Access denied");
+            router.push("/");
+        }
     }
 }
 </script>
