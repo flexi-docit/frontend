@@ -1,0 +1,14 @@
+#!/bin/sh
+
+. "$(dirname "$0")/_/husky.sh"
+
+yarn_package=true
+if ! [ -x "$(command -v yarn)" ]; then
+    yarn_package=false
+fi
+
+if $yarn_package; then
+    yarn format
+else
+    npm run format
+fi
