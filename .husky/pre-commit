@@ -1,6 +1,6 @@
 #!/bin/sh
 
-. "$(dirname "$0")/_/husky.sh"
+# . "$(dirname "$0")/husky.sh"
 
 yarn_package=true
 if ! [ -x "$(command -v yarn)" ]; then
