@@ -8,18 +8,16 @@
 </template>
 
 <script>
-import router from '@/router';
-import checkAndManageAuth from '@/utils/checkAuth';
+import router from "@/router";
+import checkAndManageAuth from "@/utils/checkAuth";
 
 export default {
   created() {
     checkAndManageAuth(this.$store, router);
 
     // We should have state here onwards
-  }
-}
+  },
+};
 </script>
 
-<style lang="scss" scoped>
-
-</style>
+<style lang="scss" scoped></style>

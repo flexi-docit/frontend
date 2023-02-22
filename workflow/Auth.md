@@ -16,7 +16,7 @@ flowchart TD
 flowchart TD
     U((User))
     L[(Local Storage)]
-    S[(State Store)] 
+    S[(State Store)]
     B[(Backend)]
     U --> ask[On Login] --> B --> Q{Are my credentials correct?}
     Q --> |Yes| S --> setUser[[Set user accordingly]] --> L --> setLocalStorage[[Set token, id, role]]
