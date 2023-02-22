@@ -1,5 +1,5 @@
 {
-  "name": "DocIt!",
+  "name": "docit",
   "version": "0.1.0",
   "private": true,
   "scripts": {
@@ -24,6 +24,7 @@
     "@vue/cli-plugin-vuex": "~5.0.0",
     "@vue/cli-service": "~5.0.0",
     "husky": "^8.0.3",
+    "prettier": "^2.8.4",
     "sass": "^1.32.7",
     "sass-loader": "^12.0.0",
     "vue-template-compiler": "^2.6.14"
