@@ -18,10 +18,11 @@
 
 <script>
 import router from "@/router";
+import { mutationNames } from "@/store/mutationTypes";
 import logo from "../assets/common/logo-complete.svg";
 import background from "../assets/login/bg.svg";
 
-import { localStorageConstants } from "../utils/constants";
+import { JWTIdentifier, JWTRegex } from "../utils/constants";
 
 export default {
     data() {
@@ -48,20 +49,23 @@ export default {
                     body: JSON.stringify(data)
                 });
 
-                const formattedResponse = await response.json();
-                if (formattedResponse.status) {
-                    if (formattedResponse.data) {
-                        localStorage.setItem('d_token', formattedResponse.data.token);
-                        localStorage.setItem('d_role', formattedResponse.data.role);
-                        localStorage.setItem('d_id', formattedResponse.data.id);
-                        this.$store.commit('setRole', formattedResponse.data.role);
-                        this.$store.commit('setID', formattedResponse.data.id);
-                        this.$store.commit('setLoggedIn', true);
-                        router.push('/')
+                if (response.ok) {
+                    const formattedResponse = await response.json();
+                    if (formattedResponse.status) {
+                        if (formattedResponse.data) {
+                            localStorage.setItem(JWTIdentifier, formattedResponse.data.token);
+                            this.$store.commit(mutationNames.setRole, formattedResponse.data.role);
+                            this.$store.commit(mutationNames.setID, formattedResponse.data.id);
+                            this.$store.commit(mutationNames.setLoggedIn, true);
+                            router.push('/')
+                        }
+                    }
+                    else {
+                        console.error(formattedResponse);
+                        alert("Error! Check your credentials again please");
                     }
                 }
                 else {
-                    console.error(formattedResponse);
                     alert("Error! Check your credentials again please");
                 }
             } catch (error) {
@@ -70,19 +74,36 @@ export default {
             }
         }
     },
-    created() {
-        const { tokenKey, roleKey, IDKey } = localStorageConstants;
+    async beforeCreate() {
+        const jwt = localStorage.getItem(JWTIdentifier);
+        if (jwt && JWTRegex.test(jwt)) {
+            // Request jwt breakdown from server
+            const url = "http://localhost:8000/api/v1/auth/decode-jwt";
 
-        const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
-        const token = localStorage.getItem(tokenKey);
-        const role = localStorage.getItem(roleKey);
-        const ID = localStorage.getItem(IDKey);
-        if (JWTRegex.test(token) && role !== null && ID !== null) {
-            window.alert("Logged in, redirecting...");
-            this.$store.commit('setLoggedIn', true);
-            this.$store.commit('setRole', role);
-            this.$store.commit("setID", ID);
-            router.push("/");
+            try {
+                const response = await fetch(url, {
+                    method: 'GET',
+                    headers: {
+                        'Authorization': `Bearer ${jwt}`
+                    },
+                });
+
+                if (response.ok) {
+                    const formattedResponse = await response.json();
+                    if (formattedResponse.status) {
+                        if (formattedResponse.data) {
+                            this.$store.commit(mutationNames.setRole, formattedResponse.data.role);
+                            this.$store.commit(mutationNames.setID, formattedResponse.data.id);
+                            this.$store.commit(mutationNames.setLoggedIn, true);
+                            router.push('/')
+                        }
+                    }
+                }
+            } catch (error) {
+                console.error(error);
+                if (error.status === 500)
+                    alert("Error! Please try again later");
+            }
         }
     }
 }
@@ -99,7 +120,6 @@ export default {
     @media screen and (max-width: 768px) {
         height: calc(100vh - 85px);
     }
-
 
     >.login-form {
         display: flex;
@@ -118,7 +138,6 @@ export default {
         >.logo-icon-img {
             height: 120px;
         }
-
 
         >.login-label {
             font-weight: 500;

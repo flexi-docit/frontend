@@ -46,6 +46,7 @@ export default {
 .sticky {
     position: sticky;
     top: 0;
+    z-index: 2;
 }
 
 .navbar-desktop {
@@ -55,7 +56,7 @@ export default {
     justify-content: space-between;
     padding: 15px 60px 15px 60px;
     background-color: white;
-    box-shadow: 0px 5px 200px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
 
     >a>img {
         width: 150px;
@@ -82,7 +83,7 @@ export default {
         padding: 0;
         height: 85px;
         background-color: white;
-        box-shadow: 0px 5px 200px rgba(0, 0, 0, 0.2);
+        box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
     }
 
     .navbar-mobile-default {
@@ -112,7 +113,7 @@ export default {
         width: 100vw;
         height: calc(100vh - 85px);
         margin-top: 85px;
-        z-index: 100;
+        z-index: 2;
         opacity: 1;
         background-color: white;
         padding-left: 50px;

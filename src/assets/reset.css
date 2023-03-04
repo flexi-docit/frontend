@@ -6,7 +6,10 @@
     margin: 0;
 }
 
-html,
+html {
+    min-height: 100%;
+    position: relative;
+}
 body {
     height: 100%;
 }
