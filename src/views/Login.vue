@@ -65,6 +65,9 @@ export default {
                         alert("Error! Check your credentials again please");
                     }
                 }
+                else {
+                    alert("Error! Check your credentials again please");
+                }
             } catch (error) {
                 console.error(error);
                 alert("Error! Please try again later");
@@ -73,7 +76,7 @@ export default {
     },
     async beforeCreate() {
         const jwt = localStorage.getItem(JWTIdentifier);
-        if (JWTRegex.test(jwt)) {
+        if (jwt && JWTRegex.test(jwt)) {
             // Request jwt breakdown from server
             const url = "http://localhost:8000/api/v1/auth/decode-jwt";
 
@@ -135,7 +138,6 @@ export default {
         >.logo-icon-img {
             height: 120px;
         }
-
 
         >.login-label {
             font-weight: 500;

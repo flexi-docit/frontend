@@ -22,6 +22,11 @@ const authenticationModule = {
     [mutationNames.setLoggedIn](state, loggedInStatus) {
       Vue.set(state.user, "loggedIn", loggedInStatus);
     },
+    [mutationNames.clearUser](state) {
+      Vue.set(state.user, "loggedIn", false);
+      Vue.set(state.user, "role", "");
+      Vue.set(state.user, "id", null);
+    },
   },
 };
 

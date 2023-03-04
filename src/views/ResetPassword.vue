@@ -60,13 +60,13 @@ export default {
         }
     },
     beforeCreate() {
-        const token = this.$route.params.token;
-        const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
+        // const token = this.$route.params.token;
+        // const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
 
-        if (!token || !JWTRegex.test(token)) {
-            alert("Access denied");
-            router.push("/");
-        }
+        // if (!token || !JWTRegex.test(token)) {
+        //     alert("Access denied");
+        //     router.push("/");
+        // }
     }
 }
 </script>
@@ -77,7 +77,7 @@ export default {
     justify-content: center;
     align-items: center;
     font-family: 'Roboto';
-    background: linear-gradient(360deg, rgba(237, 237, 245, 1) 70%, rgba(152, 0, 71, 1) 60%);
+    background: linear-gradient(360deg, rgba(237, 237, 245, 1) 70%, rgb(17, 47, 84) 60%);
     width: 100vw;
     height: calc(100vh - 90px);
 
@@ -136,7 +136,7 @@ export default {
             }
         }
 
-        >.reset-password-input {
+        >.reset-form-input {
             display: flex;
             flex-direction: column;
             width: 100%;
