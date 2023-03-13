@@ -105,11 +105,11 @@ export default {
                         this.$state.commit('clearUser');
                         return router.push("/login");
                     }
-                    alert("Error! Please try again later");
+                    alert(Errors.InternalServerError);
                 }
             } catch (error) {
                 console.log(error);
-                alert("Error! Please try again later");
+                alert(Errors.InternalServerError);
             }
         },
         async createTag() {
@@ -150,10 +150,10 @@ export default {
 
 
                     }
-                    alert("Error! Please try again later");
+                    alert(Errors.InternalServerError);
                 }
             } catch (error) {
-                alert("Error! Please try again later");
+                alert(Errors.InternalServerError);
             }
         },
         addTag(e) {

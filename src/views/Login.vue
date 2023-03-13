@@ -70,39 +70,7 @@ export default {
                 }
             } catch (error) {
                 console.error(error);
-                alert("Error! Please try again later");
-            }
-        }
-    },
-    async beforeCreate() {
-        const jwt = localStorage.getItem(JWTIdentifier);
-        if (jwt && JWTRegex.test(jwt)) {
-            // Request jwt breakdown from server
-            const url = "http://localhost:8000/api/v1/auth/decode-jwt";
-
-            try {
-                const response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${jwt}`
-                    },
-                });
-
-                if (response.ok) {
-                    const formattedResponse = await response.json();
-                    if (formattedResponse.status) {
-                        if (formattedResponse.data) {
-                            this.$store.commit(mutationNames.setRole, formattedResponse.data.role);
-                            this.$store.commit(mutationNames.setID, formattedResponse.data.id);
-                            this.$store.commit(mutationNames.setLoggedIn, true);
-                            router.push('/')
-                        }
-                    }
-                }
-            } catch (error) {
-                console.error(error);
-                if (error.status === 500)
-                    alert("Error! Please try again later");
+                alert(Errors.InternalServerError);
             }
         }
     }

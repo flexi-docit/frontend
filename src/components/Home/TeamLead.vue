@@ -26,35 +26,7 @@ export default {
             editingModule: null,
             isModuleCreationModalOpen: false,
             isModuleEditModalOpen: false,
-            modules: [
-                // {
-                //     id: 101,
-                //     name: "Authentication",
-                //     createdAt: new Date(),
-                //     tags: [{ id: 1, name: "CI" }, { id: 2, name: "CD" }, { id: 3, name: "Devops" },],
-                //     link: "/authentication",
-                //     description: "This module includes all resources related to the authentication workflow",
-                //     lead_id: 1
-                // },
-                // {
-                //     id: 102,
-                //     name: "Containerization",
-                //     createdAt: new Date(),
-                //     tags: [{ id: 1, name: "CI" }, { id: 2, name: "CD" }, { id: 3, name: "Devops" },],
-                //     link: "/containerization",
-                //     description: "This module contains docker and K8s related information",
-                //     lead_id: 2
-                // },
-                // {
-                //     id: 103,
-                //     name: "Testing",
-                //     createdAt: new Date(),
-                //     tags: [{ id: 1, name: "CI" }, { id: 2, name: "CD" }, { id: 3, name: "Devops" },],
-                //     link: "/testing",
-                //     description: "New testing module for unit tests on Operation Vijay",
-                //     lead_id: 3
-                // },
-            ],
+            modules: [],
             allEmployees: [],
             allTags: [],
         }
@@ -126,7 +98,7 @@ export default {
                     localStorage.removeItem(JWTIdentifier);
                     return router.push("/login");
                 }
-                alert("Error! Please try again later");
+                alert(Errors.InternalServerError);
             }
 
             // GET ALL MODULES
@@ -152,7 +124,7 @@ export default {
                     localStorage.removeItem(JWTIdentifier);
                     return router.push("/login");
                 }
-                alert("Error! Please try again later");
+                alert(Errors.InternalServerError);
             }
 
             // GET ALL EMPLOYEES
@@ -172,13 +144,13 @@ export default {
                     localStorage.removeItem(JWTIdentifier);
                     return router.push("/login");
                 }
-                alert("Error! Please try again later");
+                alert(Errors.InternalServerError);
             }
 
             this.loadingState = false;
         } catch (error) {
             console.error(error);
-            alert("Error! Please try again later");
+            alert(Errors.InternalServerError);
         }
     }
 }   

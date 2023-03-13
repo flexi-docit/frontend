@@ -2,7 +2,7 @@ export const JWTIdentifier = "d_token";
 
 export const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
 
-export const pageAuthMatrix = [
+export const PageAuthMatrix = [
   {
     name: "ForgotPassword",
     allRoles: true,

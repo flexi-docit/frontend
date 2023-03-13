@@ -54,7 +54,7 @@ export default {
 
             } catch (error) {
                 console.error(error);
-                alert("Error! Please try again later");
+                alert(Errors.InternalServerError);
             }
         }
     },
