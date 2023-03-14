@@ -6,8 +6,10 @@ import store from "./store";
 import "./assets/reset.css";
 
 Vue.config.productionTip = false;
-Vue.component("spinner", () =>
-  import(/* webpackChunkName: "spinner" */ "@/components/Common/Spinner.vue")
+Vue.component("LoadingSpinner", () =>
+  import(
+    /* webpackChunkName: "spinner" */ "@/components/Common/LoadingSpinner.vue"
+  )
 );
 
 new Vue({
