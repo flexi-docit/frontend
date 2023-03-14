@@ -38,8 +38,12 @@
 </template>
 
 <script>
+<<<<<<< HEAD
 import router from "@/router";
 import { JWTIdentifier, serverBaseURL } from "@/utils/constants";
+=======
+import { JWTIdentifier, serverBaseURL } from '@/utils/constants';
+>>>>>>> 01d774360dae6de6ef70811876db3355d2397276
 import Errors from "@/utils/errors";
 
 export default {
@@ -48,6 +52,7 @@ export default {
       type: Object,
       default: null,
     },
+<<<<<<< HEAD
   },
   methods: {
     openModuleEditingModal() {
@@ -87,6 +92,44 @@ export default {
     },
   },
 };
+=======
+    methods: {
+        openModuleEditingModal() {
+            this.$parent.$emit("openModuleEditingModal", { module: this.module });
+        },
+        async deleteModule() {
+            const jwt = localStorage.getItem(JWTIdentifier);
+            const confirmation = window.confirm("Careful! You are about to delete a module, this is a dangerous action");
+
+            if (confirmation) {
+                const deleteModuleURL = `${serverBaseURL}/api/v1/module/${this.module.id}`;
+                const deleteModuleResponse = await fetch(deleteModuleURL, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${jwt}`,
+                    },
+                });
+                const deleteModuleRes = await deleteModuleResponse.json();
+
+                if (deleteModuleRes.status) {
+                    this.$emit("deleteModule", this.module.id);
+
+                    return alert("Module deleted!");
+                }
+
+                if (deleteModuleResponse.status === 401) {
+                    alert(Errors.LoginExpired);
+                    localStorage.removeItem(JWTIdentifier);
+                    this.$state.commit('clearUser');
+                    return router.push("/login");
+                }
+
+                alert(Errors.InternalServerError);
+            }
+        }
+    }
+}
+>>>>>>> 01d774360dae6de6ef70811876db3355d2397276
 </script>
 
 <style lang="scss" scoped>
