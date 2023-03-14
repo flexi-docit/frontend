@@ -20,6 +20,7 @@
 <script>
 import mainSVG from "@/assets/forgot/main.svg";
 import router from "@/router";
+import { serverBaseURL } from "@/utils/constants";
 
 export default {
     data() {
@@ -31,7 +32,7 @@ export default {
     },
     methods: {
         async handleSubmit() {
-            const url = "http://localhost:8000/api/v1/auth/confirm/email";
+            const url = `${serverBaseURL}/api/v1/auth/confirm/email`;
             const data = { email: this.email };
             try {
                 const response = await fetch(url, {
@@ -54,7 +55,7 @@ export default {
 
             } catch (error) {
                 console.error(error);
-                alert("Error! Please try again later");
+                alert(Errors.InternalServerError);
             }
         }
     },

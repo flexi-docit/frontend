@@ -19,6 +19,7 @@
 
 <script>
 import router from "@/router";
+import { serverBaseURL } from "@/utils/constants";
 
 export default {
     data() {
@@ -32,7 +33,7 @@ export default {
             if (password !== confirmPassword) return alert("Passwords do not match");
 
             const token = this.$route.params.token;
-            const url = `http://localhost:8000/api/v1/auth/reset-password/${token}`;
+            const url = `${serverBaseURL}/api/v1/auth/reset-password/${token}`;
             const data = { password: this.password, confirmPassword: this.confirmPassword };
             try {
                 const response = await fetch(url, {
@@ -55,18 +56,18 @@ export default {
 
             } catch (error) {
                 console.error(error);
-                alert("Error! Please try again later");
+                alert(Errors.InternalServerError);
             }
         }
     },
     beforeCreate() {
-        // const token = this.$route.params.token;
-        // const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
+        const token = this.$route.params.token;
+        const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;
 
-        // if (!token || !JWTRegex.test(token)) {
-        //     alert("Access denied");
-        //     router.push("/");
-        // }
+        if (!token || !JWTRegex.test(token)) {
+            alert("Access denied");
+            router.push("/");
+        }
     }
 }
 </script>

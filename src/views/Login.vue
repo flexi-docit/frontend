@@ -22,7 +22,7 @@ import { mutationNames } from "@/store/mutationTypes";
 import logo from "../assets/common/logo-complete.svg";
 import background from "../assets/login/bg.svg";
 
-import { JWTIdentifier, JWTRegex } from "../utils/constants";
+import { JWTIdentifier, JWTRegex, serverBaseURL } from "../utils/constants";
 
 export default {
     data() {
@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         async handleSubmit() {
-            const url = "http://localhost:8000/api/v1/auth/login";
+            const url = `${serverBaseURL}/api/v1/auth/login`;
 
             if (!this.password || this.password.length <= 0) return alert("Password must be provided");
             const data = { email: this.email, password: this.password };
@@ -70,39 +70,7 @@ export default {
                 }
             } catch (error) {
                 console.error(error);
-                alert("Error! Please try again later");
-            }
-        }
-    },
-    async beforeCreate() {
-        const jwt = localStorage.getItem(JWTIdentifier);
-        if (jwt && JWTRegex.test(jwt)) {
-            // Request jwt breakdown from server
-            const url = "http://localhost:8000/api/v1/auth/decode-jwt";
-
-            try {
-                const response = await fetch(url, {
-                    method: 'GET',
-                    headers: {
-                        'Authorization': `Bearer ${jwt}`
-                    },
-                });
-
-                if (response.ok) {
-                    const formattedResponse = await response.json();
-                    if (formattedResponse.status) {
-                        if (formattedResponse.data) {
-                            this.$store.commit(mutationNames.setRole, formattedResponse.data.role);
-                            this.$store.commit(mutationNames.setID, formattedResponse.data.id);
-                            this.$store.commit(mutationNames.setLoggedIn, true);
-                            router.push('/')
-                        }
-                    }
-                }
-            } catch (error) {
-                console.error(error);
-                if (error.status === 500)
-                    alert("Error! Please try again later");
+                alert(Errors.InternalServerError);
             }
         }
     }

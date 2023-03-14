@@ -22,26 +22,48 @@
 </template>
 
 <script>
+import { JWTIdentifier, serverBaseURL } from '@/utils/constants';
+import Errors from "@/utils/errors";
+
 export default {
     props: {
         module: Object
     },
     methods: {
         openModuleEditingModal() {
-            this.$emit("openModuleEditingModal", { ...this.module });
+            this.$parent.$emit("openModuleEditingModal", { module: this.module });
         },
-        deleteModule() {
+        async deleteModule() {
+            const jwt = localStorage.getItem(JWTIdentifier);
             const confirmation = window.confirm("Careful! You are about to delete a module, this is a dangerous action");
 
-            if (confirmation)
-            {
-                // DELETE MODULE REQUEST HERE
+            if (confirmation) {
+                const deleteModuleURL = `${serverBaseURL}/api/v1/module/${this.module.id}`;
+                const deleteModuleResponse = await fetch(deleteModuleURL, {
+                    method: 'DELETE',
+                    headers: {
+                        'Authorization': `Bearer ${jwt}`,
+                    },
+                });
+                const deleteModuleRes = await deleteModuleResponse.json();
 
-                // DELETE MODULE LOCALLY HERE
-                this.$emit("deleteModule", this.module.id);
-            } 
+                if (deleteModuleRes.status) {
+                    this.$emit("deleteModule", this.module.id);
+
+                    return alert("Module deleted!");
+                }
+
+                if (deleteModuleResponse.status === 401) {
+                    alert(Errors.LoginExpired);
+                    localStorage.removeItem(JWTIdentifier);
+                    this.$state.commit('clearUser');
+                    return router.push("/login");
+                }
+
+                alert(Errors.InternalServerError);
+            }
         }
-    },
+    }
 }
 </script>
 
