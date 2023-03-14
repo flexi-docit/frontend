@@ -4,8 +4,8 @@ import { JWTIdentifier, JWTRegex, serverBaseURL } from "@/utils/constants";
 import Errors from "@/utils/errors";
 import Vue from "vue";
 import VueRouter from "vue-router";
-import Home from "../views/Home.vue";
-import Login from "../views/Login.vue";
+import Home from "../views/HomeView.vue";
+import Login from "../views/LoginView.vue";
 
 Vue.use(VueRouter);
 
@@ -92,18 +92,18 @@ const routes = [
     path: "/forgot-password",
     name: "ForgotPassword",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ForgotPassword.vue"),
+      import(/* webpackChunkName: "about" */ "../views/ForgotPasswordView.vue"),
   },
   {
     path: "/reset-password/:token?",
     name: "ResetPassword",
     component: () =>
-      import(/* webpackChunkName: "about" */ "../views/ResetPassword.vue"),
+      import(/* webpackChunkName: "about" */ "../views/ResetPasswordView.vue"),
   },
   {
     path: "/:pathMatch(.*)*",
     component: () =>
-      import(/* webpackChunkName: "404" */ "../views/PageNotFound.vue"),
+      import(/* webpackChunkName: "404" */ "../views/PageNotFoundView.vue"),
   },
 ];
 
