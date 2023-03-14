@@ -43,7 +43,8 @@
 </template>
 
 <script>
-import { JWTIdentifier } from '@/utils/constants';
+import Errors from "@/utils/errors";
+import { JWTIdentifier, serverBaseURL } from '@/utils/constants';
 
 export default {
     data() {
@@ -63,8 +64,7 @@ export default {
         async submitCreateModule() {
             const jwt = localStorage.getItem(JWTIdentifier);
             try {
-                // CREATE MODULE API REQUEST HERE
-                const createModuleURL = "http://localhost:8000/api/v1/module/";
+                const createModuleURL = `${serverBaseURL}/api/v1/module/`;
                 const tagListIDs = this.selectedTags.map(t => t.id);
                 const data = {
                     name: this.moduleName,
@@ -84,23 +84,19 @@ export default {
                 const createModuleRes = await createModuleResponse.json();
 
                 if (createModuleRes) {
-
-                    // GET ID FROM API RESPONSE
                     const id = createModuleRes.data.module_id;
 
-                    // CREATE MODULE LOCALLY HERE
-                    this.$emit("createModule", { id, name: this.moduleName, description: this.description, lead_id: this.moduleLeadID, tags: this.selectedTags });
+                    // Creates module in state
+                    this.$parent.$emit("createModule", { id, name: this.moduleName, description: this.description, lead_id: this.moduleLeadID, tags: this.selectedTags });
 
-                    // CLEANUP
                     const alertMessage = "Module \"" + this.moduleName + "\" created!";
                     alert(alertMessage);
 
-                    // CLOSE MODAL AFTER CLEANUP/SUCCESS
-                    this.$emit("closeModuleModal");
+                    this.$parent.$emit("closeModuleModal");
                 }
                 else {
                     if (tagsResponse.status === 401) {
-                        alert("Login expired, please login again");
+                        alert(Errors.LoginExpired);
                         localStorage.removeItem(JWTIdentifier);
                         this.$state.commit('clearUser');
                         return router.push("/login");
@@ -115,8 +111,7 @@ export default {
         async createTag() {
             try {
                 const jwt = localStorage.getItem(JWTIdentifier);
-                // CREATE NEW TAG API REQUEST HERE
-                const createTagURL = "http://localhost:8000/api/v1/tag/";
+                const createTagURL = `${serverBaseURL}/api/v1/tag/`;
                 const data = {
                     name: this.newTagName,
                 }
@@ -131,19 +126,17 @@ export default {
                 const createTagRes = await createTagResponse.json();
 
                 if (createTagRes.status) {
-                    // GET ID FROM API RESPONSE
                     const id = createTagRes.data.tag_id;
 
-                    // EDIT TAGS LOCALLY HERE
-                    this.$emit("createTag", { id, name: this.newTagName });
+                    // Creates tag in state
+                    this.$parent.$emit("createTag", { id, name: this.newTagName });
 
-                    // CLEANUP
                     const alertMessage = "Tag \"" + this.newTagName + "\" created!";
                     alert(alertMessage);
                     this.newTagName = "";
                 } else {
                     if (tagsResponse.status === 401) {
-                        alert("Login expired, please login again");
+                        alert(Errors.LoginExpired);
                         localStorage.removeItem(JWTIdentifier);
                         this.$state.commit('clearUser');
                         return router.push("/login");
@@ -170,7 +163,7 @@ export default {
             this.selectedTags.splice(idx, 1);
         },
         closeModuleModal() {
-            this.$emit("closeModuleModal");
+            this.$parent.$emit("closeModuleModal");
         },
         editModuleLead(e) {
             this.moduleLeadID = e.target.value;

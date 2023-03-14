@@ -39,14 +39,15 @@
 </template>
 
 <script>
-import { JWTIdentifier } from '@/utils/constants';
+import { JWTIdentifier, serverBaseURL } from '@/utils/constants';
+import Errors from "@/utils/errors";
 
 export default {
     data() {
         return {
             newTagName: "",
-            // KEEP REFERENCES, BREAKS OTHERWISE
-            moduleLeadID: null,
+            // Breaks if references are not kept, do not mess with lines below
+            moduleLeadID: this.editingModule.lead_id,
             moduleName: this.editingModule.name,
             selectedTags: this.editingModule.tags.slice()
         };
@@ -60,8 +61,7 @@ export default {
         async submitEditModule() {
             const jwt = localStorage.getItem(JWTIdentifier);
             try {
-                // EDIT MODULE API REQUEST HERE
-                const editModuleURL = "http://localhost:8000/api/v1/module/1";
+                const editModuleURL = `${serverBaseURL}/api/v1/module/${this.editingModule.id}`;
                 const tagListIDs = this.selectedTags.map(t => t.id);
                 const data = {
                     name: this.moduleName,
@@ -81,25 +81,21 @@ export default {
                 const editModuleRes = await editModuleResponse.json();
 
                 if (editModuleRes.status) {
-                    // EDIT MODULE LOCALLY HERE
-                    this.$emit("editModule", this.editingModule.id, this.moduleName, this.moduleLeadID, this.selectedTags);
+                    this.$parent.$emit("editModule", this.editingModule.id, this.moduleName, this.moduleLeadID, this.selectedTags);
 
-                    // CLEANUP
                     const alertMessage = "Module \"" + this.editingModule.name + "\" edited!";
                     alert(alertMessage);
 
-                    // CLOSE MODAL AFTER CLEANUP/SUCCESS
-                    this.$emit("closeModuleModal");
+                    this.$parent.$emit("closeModuleModal");
                 }
                 else {
                     if (tagsResponse.status === 401) {
-                        alert("Login expired, please login again");
+                        alert(Errors.LoginExpired);
                         localStorage.removeItem(JWTIdentifier);
                         this.$state.commit('clearUser');
                         return router.push("/login");
-
-
                     }
+
                     alert(Errors.InternalServerError);
                 }
             } catch (error) {
@@ -107,13 +103,13 @@ export default {
             }
         },
         closeModuleModal() {
-            this.$emit("closeModuleModal");
+            this.$parent.$emit("closeModuleModal");
         },
         async createTag() {
             try {
                 const jwt = localStorage.getItem(JWTIdentifier);
-                // CREATE NEW TAG API REQUEST HERE
-                const createTagURL = "http://localhost:8000/api/v1/tag/";
+
+                const createTagURL = `${serverBaseURL}/api/v1/tag/`;
                 const data = {
                     name: this.newTagName,
                 }
@@ -128,19 +124,17 @@ export default {
                 const createTagRes = await createTagResponse.json();
 
                 if (createTagRes.status) {
-                    // GET ID FROM API RESPONSE
                     const id = createTagRes.data.tag_id;
 
-                    // EDIT TAGS LOCALLY HERE
-                    this.$emit("createTag", { id, name: this.newTagName });
+                    // Creates tag in state
+                    this.$parent.$emit("createTag", { id, name: this.newTagName });
 
-                    // CLEANUP
                     const alertMessage = "Tag \"" + this.newTagName + "\" created!";
                     alert(alertMessage);
                     this.newTagName = "";
                 } else {
                     if (tagsResponse.status === 401) {
-                        alert("Login expired, please login again");
+                        alert(Errors.LoginExpired);
                         localStorage.removeItem(JWTIdentifier);
                         this.$state.commit('clearUser');
                         return router.push("/login");

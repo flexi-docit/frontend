@@ -22,7 +22,7 @@ import { mutationNames } from "@/store/mutationTypes";
 import logo from "../assets/common/logo-complete.svg";
 import background from "../assets/login/bg.svg";
 
-import { JWTIdentifier, JWTRegex } from "../utils/constants";
+import { JWTIdentifier, JWTRegex, serverBaseURL } from "../utils/constants";
 
 export default {
     data() {
@@ -36,7 +36,7 @@ export default {
     },
     methods: {
         async handleSubmit() {
-            const url = "http://localhost:8000/api/v1/auth/login";
+            const url = `${serverBaseURL}/api/v1/auth/login`;
 
             if (!this.password || this.password.length <= 0) return alert("Password must be provided");
             const data = { email: this.email, password: this.password };

@@ -8,7 +8,7 @@
         </div>
         <div class="team-lead-modules-modules">
             <ModuleCard v-for="(module) in shownModules.slice((modulePageNumber - 1) * 6, modulePageNumber * 6)"
-                :key="module.id" :module="module" @openModuleEditingModal="openModuleEditingModal"
+                :key="module.id" :module="module" 
                 @deleteModule="deleteModule" />
         </div>
         <div class="team-lead-modules-btn-grp">
@@ -52,14 +52,11 @@ export default {
         openModuleCreationModal() {
             this.$emit("openModuleCreationModal");
         },
-        openModuleEditingModal(module) {
-            this.$emit("openModuleEditingModal", module);
-        },
         searchModule() {
             const moduleRegex = new RegExp(`.*${this.searchTerm}.*`, "i");
             let list = [];
             this.modules.forEach(module => {
-                if ((moduleRegex).test(module.title) || (moduleRegex).test(module.description)) list.push(module);
+                if ((moduleRegex).test(module.name) || (moduleRegex).test(module.description)) list.push(module);
                 else {
                     for (let i = 0; i < module.tags.length; i++) {
                         if ((moduleRegex).test(module.tags[i].name)) {

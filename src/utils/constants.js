@@ -1,3 +1,5 @@
+export const serverBaseURL = "http://localhost:8000";
+
 export const JWTIdentifier = "d_token";
 
 export const JWTRegex = /^[A-Za-z0-9-_=]+.[A-Za-z0-9-_=]+.?[A-Za-z0-9-_.+/=]*$/;

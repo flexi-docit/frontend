@@ -1,6 +1,6 @@
 import store from "@/store";
 import { mutationNames } from "@/store/mutationTypes";
-import { JWTIdentifier, JWTRegex } from "@/utils/constants";
+import { JWTIdentifier, JWTRegex, serverBaseURL } from "@/utils/constants";
 import Errors from "@/utils/errors";
 import Vue from "vue";
 import VueRouter from "vue-router";
@@ -18,7 +18,7 @@ const routes = [
       const jwt = localStorage.getItem(JWTIdentifier);
       if (jwt && JWTRegex.test(jwt)) {
         // Requests jwt breakdown from server and populates information
-        const url = "http://localhost:8000/api/v1/auth/decode-jwt";
+        const url = `${serverBaseURL}/api/v1/auth/decode-jwt`;
 
         try {
           const response = await fetch(url, {
@@ -57,9 +57,8 @@ const routes = [
     beforeEnter: async (to, from, next) => {
       const jwt = localStorage.getItem(JWTIdentifier);
       if (jwt && JWTRegex.test(jwt)) {
-        // Requests jwt breakdown from server and populates information
-        const url = "http://localhost:8000/api/v1/auth/decode-jwt";
-
+        // Request jwt breakdown from server and populates information
+        const url = `${serverBaseURL}/api/v1/auth/decode-jwt`;
         try {
           const response = await fetch(url, {
             method: "GET",

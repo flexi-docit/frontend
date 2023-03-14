@@ -13,10 +13,11 @@
 </template>
 
 <script>
-import { JWTIdentifier } from "@/utils/constants";
+import { JWTIdentifier, serverBaseURL } from "@/utils/constants";
 import Modules from "@/components/Home/Modules/Modules.vue"
 import Modal from "@/components/Home/Modules/Modal.vue"
 import Employees from "@/components/Home/Employees/Employees.vue"
+import Errors from "@/utils/errors";
 import router from "@/router";
 
 export default {
@@ -45,14 +46,17 @@ export default {
             this.isModuleCreationModalOpen = true;
         },
         openModuleEditingModal(module) {
-            this.editingModule = module;
+            this.editingModule = module.module;
             this.isModuleEditModalOpen = true;
         },
         editModule(id, moduleName, moduleLeadID, tags) {
             const idx = this.modules.findIndex((m) => m.id === id);
-            this.modules[idx].name = moduleName;
-            this.modules[idx].tags = tags;
-            this.modules[idx].lead_id = moduleLeadID;
+            const newModule = Object.create(this.modules[idx]);
+            newModule.name = moduleName;
+            newModule.tags = tags;
+            newModule.lead_id = +moduleLeadID;
+            this.modules.splice(idx, 1);
+            this.modules[idx] = newModule;
         },
         createModule(module) {
             const { id, name, tags, description, lead_id } = module;
@@ -81,8 +85,7 @@ export default {
         const jwt = localStorage.getItem(JWTIdentifier);
 
         try {
-            // GET ALL TAGS
-            const getAllTagsURL = "http://localhost:8000/api/v1/tag/";
+            const getAllTagsURL = `${serverBaseURL}/api/v1/tag/`;
             const tagsResponse = await fetch(getAllTagsURL, {
                 method: 'GET',
                 headers: {
@@ -94,15 +97,14 @@ export default {
                 this.allTags = tagsRes.data.tags
             else {
                 if (tagsResponse.status === 401) {
-                    alert("Login expired, please login again");
+                    alert(Errors.LoginExpired);
                     localStorage.removeItem(JWTIdentifier);
                     return router.push("/login");
                 }
                 alert(Errors.InternalServerError);
             }
 
-            // GET ALL MODULES
-            const getAllModulesURL = "http://localhost:8000/api/v1/module?project_id=1";
+            const getAllModulesURL = `${serverBaseURL}/api/v1/module?project_id=1`;
             const modulesResponse = await fetch(getAllModulesURL, {
                 method: 'GET',
                 headers: {
@@ -115,20 +117,21 @@ export default {
                 this.modules = this.modules.map(m => {
                     m.createdAt = new Date(m.createdAt);
                     m.tags = m.module_tags.map(mt => this.allTags.find(t => t.id === mt.tag_id));
+                    m.lead_id = m.user.id;
+                    delete m.module_tags;
                     return m
                 })
             }
             else {
                 if (tagsResponse.status === 401) {
-                    alert("Login expired, please login again");
+                    alert(Errors.LoginExpired);
                     localStorage.removeItem(JWTIdentifier);
                     return router.push("/login");
                 }
                 alert(Errors.InternalServerError);
             }
 
-            // GET ALL EMPLOYEES
-            const getAllEmployeesURL = "http://localhost:8000/api/v1/auth/";
+            const getAllEmployeesURL = `${serverBaseURL}/api/v1/auth/`;
             const employeesResponse = await fetch(getAllEmployeesURL, {
                 method: 'GET',
                 headers: {
@@ -140,7 +143,7 @@ export default {
                 this.allEmployees = employeesRes.data.employees
             else {
                 if (tagsResponse.status === 401) {
-                    alert("Login expired, please login again");
+                    alert(Errors.LoginExpired);
                     localStorage.removeItem(JWTIdentifier);
                     return router.push("/login");
                 }
@@ -152,7 +155,7 @@ export default {
             console.error(error);
             alert(Errors.InternalServerError);
         }
-    }
+    },
 }   
 </script>
 
