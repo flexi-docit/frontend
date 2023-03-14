@@ -106,7 +106,6 @@
 </template>
 
 <script>
-<<<<<<< HEAD
 import router from "@/router";
 import { JWTIdentifier, serverBaseURL } from "@/utils/constants";
 import Errors from "@/utils/errors";
@@ -182,129 +181,6 @@ export default {
           }
 
           alert(Errors.InternalServerError);
-=======
-import { JWTIdentifier, serverBaseURL } from '@/utils/constants';
-import Errors from "@/utils/errors";
-
-export default {
-    data() {
-        return {
-            newTagName: "",
-            // Breaks if references are not kept, do not mess with lines below
-            moduleLeadID: this.editingModule.lead_id,
-            moduleName: this.editingModule.name,
-            selectedTags: this.editingModule.tags.slice()
-        };
-    },
-    props: {
-        editingModule: Object,
-        allEmployees: Array,
-        allTags: Array,
-    },
-    methods: {
-        async submitEditModule() {
-            const jwt = localStorage.getItem(JWTIdentifier);
-            try {
-                const editModuleURL = `${serverBaseURL}/api/v1/module/${this.editingModule.id}`;
-                const tagListIDs = this.selectedTags.map(t => t.id);
-                const data = {
-                    name: this.moduleName,
-                    description: this.description,
-                    lead_id: this.moduleLeadID,
-                    project_id: 1,
-                    tagList: tagListIDs
-                }
-                const editModuleResponse = await fetch(editModuleURL, {
-                    method: 'PATCH',
-                    headers: {
-                        'Authorization': `Bearer ${jwt}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-                const editModuleRes = await editModuleResponse.json();
-
-                if (editModuleRes.status) {
-                    this.$parent.$emit("editModule", this.editingModule.id, this.moduleName, this.moduleLeadID, this.selectedTags);
-
-                    const alertMessage = "Module \"" + this.editingModule.name + "\" edited!";
-                    alert(alertMessage);
-
-                    this.$parent.$emit("closeModuleModal");
-                }
-                else {
-                    if (tagsResponse.status === 401) {
-                        alert(Errors.LoginExpired);
-                        localStorage.removeItem(JWTIdentifier);
-                        this.$state.commit('clearUser');
-                        return router.push("/login");
-                    }
-
-                    alert(Errors.InternalServerError);
-                }
-            } catch (error) {
-                alert(Errors.InternalServerError);
-            }
-        },
-        closeModuleModal() {
-            this.$parent.$emit("closeModuleModal");
-        },
-        async createTag() {
-            try {
-                const jwt = localStorage.getItem(JWTIdentifier);
-
-                const createTagURL = `${serverBaseURL}/api/v1/tag/`;
-                const data = {
-                    name: this.newTagName,
-                }
-                const createTagResponse = await fetch(createTagURL, {
-                    method: 'POST',
-                    headers: {
-                        'Authorization': `Bearer ${jwt}`,
-                        'Content-Type': 'application/json'
-                    },
-                    body: JSON.stringify(data)
-                });
-                const createTagRes = await createTagResponse.json();
-
-                if (createTagRes.status) {
-                    const id = createTagRes.data.tag_id;
-
-                    // Creates tag in state
-                    this.$parent.$emit("createTag", { id, name: this.newTagName });
-
-                    const alertMessage = "Tag \"" + this.newTagName + "\" created!";
-                    alert(alertMessage);
-                    this.newTagName = "";
-                } else {
-                    if (tagsResponse.status === 401) {
-                        alert(Errors.LoginExpired);
-                        localStorage.removeItem(JWTIdentifier);
-                        this.$state.commit('clearUser');
-                        return router.push("/login");
-                    }
-                    alert(Errors.InternalServerError);
-                }
-            } catch (error) {
-                alert(Errors.InternalServerError);
-            }
-        },
-        addTag(e) {
-            const selectedTagID = +e.target.value;
-            if (this.selectedTags.length >= 3)
-                return alert("Can only select upto 3 tags");
-            if (this.selectedTags.find(t => t.id === selectedTagID))
-                return;
-            const selectedTag = this.allTags.find((t) => t.id === selectedTagID);
-            this.selectedTags.push(selectedTag);
-        },
-        removeTag(id) {
-            const idx = this.selectedTags.findIndex((tag) => tag.id === id);
-            this.selectedTags.splice(idx, 1);
-        },
-        editModuleLead(e) {
-            this.moduleLeadID = e.target.value;
->>>>>>> 01d774360dae6de6ef70811876db3355d2397276
         }
       } catch (error) {
         alert(Errors.InternalServerError);
