@@ -47,8 +47,7 @@ const routes = [
           if (error.status === 500) alert(Errors.InternalServerError);
           return next("/login");
         }
-      }
-      else next("/login");
+      } else next("/login");
     },
   },
   {

@@ -1,22 +1,23 @@
 <template>
   <main class="notFound-container">
-    <div class ="logo-container">
+    <div class="logo-container">
       <img
         :src="logo"
         class="notFound-logo"
         alt="logo of docit - your internal documentation management system"
       >
-      
+
       <h1>
         OOPS! The link you're looking for is either broken or has been removed.
       </h1>
     </div>
-      <footer
+    <footer
       class="notFound-footer"
       :style="footerStyle"
-      >
+    >
       <p>
-        “Sometimes being lost is the best way to find yourself.” ― LJ Vanier, Ether: Into the Nemesis
+        “Sometimes being lost is the best way to find yourself.” ― LJ Vanier,
+        Ether: Into the Nemesis
       </p>
     </footer>
   </main>
@@ -37,7 +38,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
 .notFound-container {
   // margin-top: 10%;
   width: 100%;
@@ -50,7 +50,7 @@ export default {
     margin-left: auto;
     margin-right: auto;
     height: 165px;
-     
+
     @media screen and (max-width: 768px) {
       height: 110px;
     }
@@ -63,7 +63,6 @@ export default {
 
   h1,
   p {
-    
     font-size: 1.5rem;
 
     @media screen and (max-width: 768px) {
