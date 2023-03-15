@@ -1,16 +1,18 @@
 <template>
   <div id="app">
-    <Navbar />
+    <CombinedNavbar />
     <router-view />
+    <CombinedFooter />
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/CombinedNavbar.vue";
-
+import CombinedNavbar from "@/components/CombinedNavbar.vue";
+import CombinedFooter from "@/components/CombinedFooter.vue";
 export default {
   components: {
-    Navbar,
+    CombinedNavbar,
+    CombinedFooter,
   },
 };
 </script>
