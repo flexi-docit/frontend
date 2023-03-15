@@ -6,10 +6,17 @@
   margin: 0;
 }
 
+@font-face {
+  font-family: "Roboto";
+  font-display: swap;
+  src: local("Roboto"), url("fonts/Roboto-Regular.ttf") format("truetype");
+}
+
 html {
   min-height: 100vh;
   position: relative;
 }
+
 body {
   height: 100vh;
 }

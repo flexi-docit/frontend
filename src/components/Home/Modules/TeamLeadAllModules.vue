@@ -54,7 +54,7 @@
 
 <script>
 import ModuleCard from "@/components/Home/Modules/ModuleCard.vue";
-import topbg from "@/assets/home/topbg.png";
+import topbg from "@/assets/home/topbg.webp";
 export default {
   components: {
     ModuleCard,

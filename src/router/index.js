@@ -29,6 +29,7 @@ const routes = [
           });
 
           if (!response.ok) {
+            store.commit(mutationNames.setLoading, false);
             next("/login");
             return alert(Errors.LoginExpired);
           }
@@ -39,15 +40,20 @@ const routes = [
               store.commit(mutationNames.setRole, formattedResponse.data.role);
               store.commit(mutationNames.setID, formattedResponse.data.id);
               store.commit(mutationNames.setLoggedIn, true);
+              store.commit(mutationNames.setLoading, false);
               return next();
             }
           }
         } catch (error) {
           console.error(error);
           if (error.status === 500) alert(Errors.InternalServerError);
+          store.commit(mutationNames.setLoading, false);
           return next("/login");
         }
-      } else next("/login");
+      } else {
+        store.commit(mutationNames.setLoading, false);
+        next("/login");
+      }
     },
   },
   {
@@ -68,6 +74,7 @@ const routes = [
           });
 
           if (!response.ok) {
+            store.commit(mutationNames.setLoading, false);
             return next();
           }
 
@@ -77,15 +84,20 @@ const routes = [
               store.commit(mutationNames.setRole, formattedResponse.data.role);
               store.commit(mutationNames.setID, formattedResponse.data.id);
               store.commit(mutationNames.setLoggedIn, true);
+              store.commit(mutationNames.setLoading, false);
               return next("/");
             }
           }
         } catch (error) {
           console.error(error);
           if (error.status === 500) alert(Errors.InternalServerError);
+          store.commit(mutationNames.setLoading, false);
           return next();
         }
-      } else next();
+      } else {
+        next();
+        store.commit(mutationNames.setLoading, false);
+      }
     },
   },
   {

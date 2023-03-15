@@ -23,7 +23,3 @@ router.beforeEach((to, from, next) => {
   store.commit(mutationNames.setLoading, true);
   next();
 });
-
-router.afterEach(() => {
-  store.commit(mutationNames.setLoading, false);
-});
