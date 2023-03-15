@@ -1,7 +1,8 @@
 <template>
   <div id="app">
     <CombinedNavbar />
-    <router-view />
+    <LoadingSpinner v-if="$store.state.loading" />
+    <router-view v-else />
     <CombinedFooter />
   </div>
 </template>
@@ -24,6 +25,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 nav {

@@ -4,11 +4,12 @@ import "./registerServiceWorker";
 import router from "./router";
 import store from "./store";
 import "./assets/reset.css";
+import { mutationNames } from "./store/mutationTypes";
 
 Vue.config.productionTip = false;
 Vue.component("LoadingSpinner", () =>
   import(
-    /* webpackChunkName: "spinner" */ "@/components/Common/LoadingSpinner.vue"
+    /* webpackChunkName: "loading-spinner" */ "@/components/Common/LoadingSpinner.vue"
   )
 );
 
@@ -17,3 +18,12 @@ new Vue({
   store,
   render: (h) => h(App),
 }).$mount("#app");
+
+router.beforeEach((to, from, next) => {
+  store.commit(mutationNames.setLoading, true);
+  next();
+});
+
+router.afterEach(() => {
+  store.commit(mutationNames.setLoading, false);
+});

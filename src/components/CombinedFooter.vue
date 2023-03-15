@@ -34,6 +34,8 @@ export default {
   justify-content: space-between;
   color: #ffffff;
   font-size: 1rem;
+  margin-top: auto;
+  margin-bottom: 0;
 }
 .footer-content {
   /* width: 80%; */
