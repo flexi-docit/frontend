@@ -1,21 +1,22 @@
 <template>
   <main class="notFound-container">
-    <img
-      :src="logo"
-      class="notFound-logo"
-      alt="logo of docit - your internal documentation management system"
-    >
-    <h1>
-      OOPS! The link you're looking for is either broken or has been removed.
-      <br>Error: 404
-    </h1>
-    <footer
+    <div class ="logo-container">
+      <img
+        :src="logo"
+        class="notFound-logo"
+        alt="logo of docit - your internal documentation management system"
+      >
+      
+      <h1>
+        OOPS! The link you're looking for is either broken or has been removed.
+      </h1>
+    </div>
+      <footer
       class="notFound-footer"
       :style="footerStyle"
-    >
+      >
       <p>
-        “Sometimes being lost is the best way to find yourself.”<br>
-        ― LJ Vanier, Ether: Into the Nemesis
+        “Sometimes being lost is the best way to find yourself.” ― LJ Vanier, Ether: Into the Nemesis
       </p>
     </footer>
   </main>
@@ -36,14 +37,20 @@ export default {
 </script>
 
 <style scoped lang="scss">
+
 .notFound-container {
+  // margin-top: 10%;
   width: 100%;
+  height: 80vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   .notFound-logo {
     margin-left: auto;
     margin-right: auto;
     height: 165px;
-
+     
     @media screen and (max-width: 768px) {
       height: 110px;
     }
@@ -56,10 +63,11 @@ export default {
 
   h1,
   p {
-    font-size: 2.2rem;
+    
+    font-size: 1.5rem;
 
     @media screen and (max-width: 768px) {
-      font-size: 1.7rem;
+      font-size: 1.3rem;
     }
 
     @media screen and (max-width: 425px) {
@@ -83,8 +91,13 @@ export default {
   }
 }
 
+.logo-container {
+  width: 100%;
+  display: block;
+}
+
 .notFound-footer {
-  z-index: -1;
+  z-index: 0;
   background-repeat: no-repeat;
   background-size: cover;
   position: absolute;
