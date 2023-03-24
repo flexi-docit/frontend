@@ -54,39 +54,39 @@ const routes = [
     path: "/login",
     name: "login",
     component: Login,
-    beforeEnter: async (to, from, next) => {
-      const jwt = localStorage.getItem(JWTIdentifier);
-      if (jwt && JWTRegex.test(jwt)) {
-        // Request jwt breakdown from server and populates information
-        const url = `${serverBaseURL}/api/v1/auth/decode-jwt`;
-        try {
-          const response = await fetch(url, {
-            method: "GET",
-            headers: {
-              Authorization: `Bearer ${jwt}`,
-            },
-          });
+    // beforeEnter: async (to, from, next) => {
+    //   const jwt = localStorage.getItem(JWTIdentifier);
+    //   if (jwt && JWTRegex.test(jwt)) {
+    //     // Request jwt breakdown from server and populates information
+    //     const url = `${serverBaseURL}/api/v1/auth/decode-jwt`;
+    //     try {
+    //       const response = await fetch(url, {
+    //         method: "GET",
+    //         headers: {
+    //           Authorization: `Bearer ${jwt}`,
+    //         },
+    //       });
 
-          if (!response.ok) {
-            return next();
-          }
+    //       if (!response.ok) {
+    //         return next();
+    //       }
 
-          const formattedResponse = await response.json();
-          if (formattedResponse.status) {
-            if (formattedResponse.data) {
-              store.commit(mutationNames.setRole, formattedResponse.data.role);
-              store.commit(mutationNames.setID, formattedResponse.data.id);
-              store.commit(mutationNames.setLoggedIn, true);
-              return next("/");
-            }
-          }
-        } catch (error) {
-          console.error(error);
-          if (error.status === 500) alert(Errors.InternalServerError);
-          return next();
-        }
-      } else next();
-    },
+    //       const formattedResponse = await response.json();
+    //       if (formattedResponse.status) {
+    //         if (formattedResponse.data) {
+    //           store.commit(mutationNames.setRole, formattedResponse.data.role);
+    //           store.commit(mutationNames.setID, formattedResponse.data.id);
+    //           store.commit(mutationNames.setLoggedIn, true);
+    //           return next("/");
+    //         }
+    //       }
+    //     } catch (error) {
+    //       console.error(error);
+    //       if (error.status === 500) alert(Errors.InternalServerError);
+    //       return next();
+    //     }
+    //   } else next();
+    // },
   },
   {
     path: "/forgot-password",
@@ -99,6 +99,12 @@ const routes = [
     name: "ResetPassword",
     component: () =>
       import(/* webpackChunkName: "about" */ "../views/ResetPasswordView.vue"),
+  },
+  {
+    path: "/signup",
+    name: "signup",
+    component: () =>
+    import(/* webpackChunkName: "404" */ "../views/SignupView.vue"),
   },
   {
     path: "/:pathMatch(.*)*",
