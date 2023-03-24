@@ -60,26 +60,6 @@ export default {
       confirmPassword: this.confirmPassword,
       fullName: this.fullName,
       };
-        try 
-        {
-        const response = await fetch(url, {
-          method: "POST",
-          body: JSON.stringify(data),
-        });
-
-        if (response.ok) {
-          const formattedResponse = await response.json();
-          if (formattedResponse.status) {
-            if (formattedResponse.message) {
-              console.log(formattedResponse.message)
-        }
-      }
-    }
-    }
-    catch(exception)
-    {
-
-    }
   }
 }};
 </script>
