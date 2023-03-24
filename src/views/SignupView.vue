@@ -1,7 +1,6 @@
 <template>
   <div
     class="signup-div"
-    :style="{ backgroundImage: `url(${background})`, backgroundSize: `cover` }"
   >
     <form class="signup-form" @submit.prevent="handleSignUp">
       <img :src="logo" class="signup-form-logo" />
@@ -70,6 +69,11 @@ export default {
   justify-content: center;
   display: flex;
   flex-direction: column;
+  background-image: url("../assets/login/bg.svg");
+  background-size: cover;
+  @media screen and (max-width: 768px) {
+      background-image: none;
+    }
 }
 .signup-form {
   font-family: "Roboto";
@@ -93,6 +97,9 @@ export default {
 .signup-form-logo {
   height: 120px;
   margin-bottom: 20px;
+  @media screen and (max-width: 768px) {
+      margin-bottom: 0px;
+    }
 }
 
 .signup-form-label {
