@@ -37,7 +37,9 @@
         required
       >
 
-      <p>Forgot Password?<br></p>
+      <router-link to="/forgot-password">
+        <p>Forgot Password?<br></p>
+      </router-link>
       <button type="submit">
         SIGN IN
       </button>

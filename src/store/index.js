@@ -32,7 +32,7 @@ const authenticationModule = {
 
 const store = new Vuex.Store({
   state: {
-    loading: true,
+    loading: false,
   },
   getters: {},
   mutations: {

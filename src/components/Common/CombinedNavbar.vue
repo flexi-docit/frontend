@@ -54,7 +54,7 @@
 </template>
 
 <script>
-import logo from "../assets/common/logo-name.svg";
+import logo from "@/assets/common/logo-name.svg";
 
 export default {
   data() {

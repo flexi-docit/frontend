@@ -1,9 +1,40 @@
+@import url("https://fonts.googleapis.com/css2?family=Open+Sans:wght@600;700;800&display=swap");
+
 *,
 *::before,
 *::after {
   box-sizing: border-box;
   padding: 0;
   margin: 0;
+  font-family: "Open Sans";
+}
+
+@media screen and (max-width: 768px) {
+  .document-output {
+    font-size: 14px;
+  }
+}
+
+.document-output > ul > li {
+  margin-left: 50px !important;
+}
+
+.document-output td,
+th {
+  border: 1px solid black;
+  padding: 10px;
+}
+
+.document-output * {
+  margin-top: 10px;
+}
+
+.document-output > h1,
+h2,
+h3,
+h4,
+h5 {
+  font-weight: 600;
 }
 
 @font-face {
@@ -30,6 +61,10 @@ body {
 button,
 a {
   cursor: pointer;
+}
+
+a {
+  text-decoration: none;
 }
 
 img,

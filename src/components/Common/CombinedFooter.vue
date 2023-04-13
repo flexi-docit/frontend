@@ -7,7 +7,7 @@
     </div>
     <div class="footer-logo">
       <img
-        src="../assets/common/logo-name.svg"
+        src="@/assets/common/logo-name.svg"
         alt="logo"
         class="image"
       >

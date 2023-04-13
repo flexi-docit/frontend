@@ -1,19 +1,21 @@
 <template>
   <div class="module-card">
-    <section class="module-card-main">
-      <span class="module-card-main-letterhead">{{
-        module.name.substring(0, 1)
-      }}</span>
-      <span class="module-card-main-text">
-        <h5 class="module-card-main-text-title">{{ module.name }}</h5>
-        <p class="module-card-main-text-date">
-          Created On - {{ module.createdAt.toDateString() }}
-        </p>
-        <p class="module-card-main-text-description">
-          {{ module.description }}
-        </p>
-      </span>
-    </section>
+    <router-link :to="{ name: 'module', params: { id: module.id } }">
+      <section class="module-card-main">
+        <span class="module-card-main-letterhead">{{
+          module.name.substring(0, 1)
+        }}</span>
+        <span class="module-card-main-text">
+          <h5 class="module-card-main-text-title">{{ module.name }}</h5>
+          <p class="module-card-main-text-date">
+            Created On - {{ module.createdAt.toDateString() }}
+          </p>
+          <p class="module-card-main-text-description">
+            {{ module.description }}
+          </p>
+        </span>
+      </section>
+    </router-link>
     <section class="module-card-options">
       <span class="module-card-options-btn-grp">
         <button
@@ -96,7 +98,6 @@ export default {
   flex-direction: column;
   justify-content: space-between;
   column-gap: 10px;
-  align-items: center;
   background-color: white;
   padding: 10px;
   width: 30%;
@@ -114,8 +115,7 @@ export default {
     opacity: 1;
     box-shadow: 0px 4px 41px rgba(0, 0, 0, 0.25);
   }
-
-  > .module-card-main {
+  .module-card-main {
     display: flex;
     height: 100%;
     font-size: 12px;
