@@ -1,43 +1,39 @@
 <template>
   <main class="login-container">
-    <figure class="login-container-left">
-      <img
-        class="login-bg-img"
-        :src="background"
-        alt=""
-      >
-    </figure>
+    <div class="login-container-left">
+      
+      <img :src="logoInvert" class="logo-icon-img">
+      <div class = "welcome"></div>
+      <div class = "link-info">
+        <h1>www.docit.com</h1>
+      </div>
+
+
+    </div>
     <form
       class="login-form"
       @submit.prevent="handleSubmit"
     >
-      <img
-        :src="logo"
-        class="logo-icon-img"
-      ><br>
-      <label
-        for="email"
-        class="login-label"
-      >Email</label>
+      <h1 class = "sign-in">Sign In</h1>
+     
       <input
         id="email"
         v-model.trim="email"
         class="login-input"
         type="email"
+        placeholder="Enter Email"
       >
-      <label
-        for="password"
-        class="login-label"
-      >Password</label>
+     
       <input
         id="password"
         v-model.trim="password"
         class="login-input"
         type="password"
+        placeholder="Enter Password"
         required
       >
 
-      <router-link to="/forgot-password">
+      <router-link class = "forgot" to="/forgot-password">
         <p>Forgot Password?<br></p>
       </router-link>
       <button type="submit">
@@ -51,7 +47,8 @@
 import router from "@/router";
 import { mutationNames } from "@/store/mutationTypes";
 import Errors from "@/utils/errors";
-import logo from "../assets/common/logo-complete.svg";
+import logo from "../assets/common/logo-name.svg";
+import logoInvert from "../assets/common/logo-name-invert.svg";
 import background from "../assets/login/bg.svg";
 
 import { JWTIdentifier, serverBaseURL } from "../utils/constants";
@@ -61,7 +58,7 @@ export default {
     return {
       logo,
       background,
-
+      logoInvert,
       email: "",
       password: "",
     };
@@ -116,71 +113,116 @@ export default {
 
 <style lang="scss" scoped>
 .login-container {
-  font-family: "Roboto";
+  font-family: "Open Sans";
   display: flex;
   width: 100vw;
   height: calc(100vh - 90px);
   overflow: hidden;
 
   @media screen and (max-width: 768px) {
-    height: calc(100vh - 85px);
+    height: calc(100vh - 90px);
   }
 
   > .login-form {
     display: flex;
     flex-direction: column;
-    row-gap: 10px;
-    align-items: center;
+    row-gap: 20px;
     justify-content: center;
-    width: 50%;
-    padding: 15px 100px 15px 100px;
+    width: 30%;
+    padding: 10px 50px 10px 50px;
     height: 100%;
 
-    @media screen and (max-width: 768px) {
+    @media only screen and (max-width: 1200px) {
+      width: 50%;
+    }
+    @media  only screen and (max-width: 768px) {
       width: 100%;
     }
-
-    > .logo-icon-img {
-      height: 120px;
-    }
-
-    > .login-label {
-      font-weight: 500;
-      font-size: 22px;
+    > .sign-in {
+      font-weight: 800;
+      font-size: 2.5rem;
       text-align: left;
       width: 100%;
-      margin-left: 20px;
     }
 
     > button {
-      background-color: #db1a32;
+      background: linear-gradient(90deg, #112F54 -61.33%, #509EFF 116.56%);
       color: white;
       border: none;
-      border-radius: 5px;
-      width: 60%;
+      border-radius: none;
+      width: 100%;
       min-height: 40px;
       margin-top: 40px;
     }
 
     > input {
-      background-color: #eeeef6;
-      border: none;
-      padding: 10px;
+      background-color: #ffff;
+      outline: 0;
+      border-width: 0 0 3px;
+      border-color: linear-gradient(90deg, #112F54 -61.33%, #509EFF 116.56%);
       width: 100%;
+      padding: 20px 0px;
+      margin: 0px;
+      vertical-align: baseline;
+    }
+
+    > .forgot {
+      font-size: 1rem;
+      font-weight: 400;
+      width: 100%;
+      margin-top: 20px;
+      color: #9e9e9e;
     }
   }
 
   > .login-container-left {
-    width: 50%;
-
+    width: 70%;
+    padding:5rem;
+    align-content: left;
+    text-align: left;
+    background-image: url("../assets/login/bg.svg");
+    background-size: fit;
+    background-repeat: no-repeat; 
     @media screen and (max-width: 768px) {
       display: none;
     }
-
-    > img {
+    @media screen and (max-width: 1200px) {
+      width: 50%;
+    }
+    .welcome {
+      height: 70%;
       width: 100%;
-      height: 100%;
-      object-fit: cover;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      align-content: center;
+      @media only screen and (max-width: 1200px) {
+        height: 80%;
+      }
+
+    }
+    .welcome h1 {
+      color: white;
+      font-weight: 800;
+      font-size: 2.5rem;
+    }
+
+    img{
+      padding: none;
+      width: 10vw;
+    }
+
+    .link-info {
+      margin-top: 7rem;
+      @media only screen and (max-width: 1200px) {
+        margin-top: 1rem;
+      }
+    }
+
+    .link-info h1 {
+      color: white;
+      font-size: 1.5rem;
+      font-weight: 400;
     }
   }
 }
