@@ -6,14 +6,18 @@
       <p>Terms of Use</p> -->
     </div>
     <div class="footer-logo">
-      <img src="../assets/common/logo-name.svg" alt="logo" class = "image"/>
+      <img
+        src="../assets/common/logo-name.svg"
+        alt="logo"
+        class="image"
+      >
     </div>
   </footer>
 </template>
 
 <script>
 export default {
-  name: "Footer",
+  name: "CombinedFooter",
   data() {
     return {};
   },
@@ -30,6 +34,8 @@ export default {
   justify-content: space-between;
   color: #ffffff;
   font-size: 1rem;
+  margin-top: auto;
+  margin-bottom: 0;
 }
 .footer-content {
   /* width: 80%; */
@@ -46,8 +52,8 @@ export default {
   justify-content: center;
 }
 .image {
-    padding: 1%;
-    width: 70%;
+  padding: 1%;
+  width: 70%;
 }
 
 @media only screen and (max-width:800px) {

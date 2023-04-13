@@ -3,4 +3,5 @@ export const mutationNames = {
   setRole: "setRole",
   setLoggedIn: "setLoggedIn",
   clearUser: "clearUser",
+  setLoading: "setLoading",
 };

@@ -31,9 +31,15 @@ const authenticationModule = {
 };
 
 const store = new Vuex.Store({
-  state: {},
+  state: {
+    loading: true,
+  },
   getters: {},
-  mutations: {},
+  mutations: {
+    [mutationNames.setLoading](state, loadingStatus) {
+      Vue.set(state, "loading", loadingStatus);
+    },
+  },
   modules: { auth: authenticationModule },
 });
 

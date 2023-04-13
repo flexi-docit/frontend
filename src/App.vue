@@ -1,18 +1,19 @@
 <template>
   <div id="app">
-    <Navbar />
-    <router-view />
-    <Footer />
+    <CombinedNavbar />
+    <LoadingSpinner v-if="$store.state.loading" />
+    <router-view v-else />
+    <CombinedFooter />
   </div>
 </template>
 
 <script>
-import Navbar from "@/components/CombinedNavbar.vue";
-import Footer from "@/components/CombinedFooter.vue";
+import CombinedNavbar from "@/components/CombinedNavbar.vue";
+import CombinedFooter from "@/components/CombinedFooter.vue";
 export default {
   components: {
-    Navbar,
-    Footer
+    CombinedNavbar,
+    CombinedFooter,
   },
 };
 </script>
@@ -24,6 +25,8 @@ export default {
   -moz-osx-font-smoothing: grayscale;
   text-align: center;
   height: 100%;
+  display: flex;
+  flex-direction: column;
 }
 
 nav {

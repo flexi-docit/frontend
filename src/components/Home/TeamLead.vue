@@ -1,5 +1,5 @@
 <template>
-  <loading-spinner v-if="loadingState" />
+  <LoadingSpinner v-if="loadingState" />
   <div
     v-else
     class="team-lead"
