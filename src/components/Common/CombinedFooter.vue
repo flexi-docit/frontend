@@ -7,7 +7,7 @@
     </div>
     <div class="footer-logo">
       <img
-        src="../assets/common/logo-name.svg"
+        src="@/assets/common/logo-name.svg"
         alt="logo"
         class="image"
       >
@@ -56,8 +56,7 @@ export default {
   width: 70%;
 }
 
-@media only screen and (max-width:800px) {
-  
+@media only screen and (max-width: 800px) {
   .combined-footer {
     height: 5vh;
     font-size: 2vw;

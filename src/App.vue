@@ -8,8 +8,8 @@
 </template>
 
 <script>
-import CombinedNavbar from "@/components/CombinedNavbar.vue";
-import CombinedFooter from "@/components/CombinedFooter.vue";
+import CombinedNavbar from "@/components/Common/CombinedNavbar.vue";
+import CombinedFooter from "@/components/Common/CombinedFooter.vue";
 export default {
   components: {
     CombinedNavbar,

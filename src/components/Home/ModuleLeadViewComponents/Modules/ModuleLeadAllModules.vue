@@ -1,23 +1,20 @@
 <template>
   <section
-    class="team-lead-modules"
+    class="module-lead-modules"
     :style="topStyle"
   >
-    <h1 class="team-lead-modules-header">
+    <h1 class="module-lead-modules-header">
       Modules | {{ projectName }}
     </h1>
-    <div class="team-lead-modules-search">
+    <div class="module-lead-modules-search">
       <input
         v-model="searchTerm"
         placeholder="Search"
         @input="searchModule"
       >
       <span>&#8981;</span>
-      <button @click="openModuleCreationModal">
-        +
-      </button>
     </div>
-    <div class="team-lead-modules-modules">
+    <div class="module-lead-modules-modules">
       <ModuleCard
         v-for="module in shownModules.slice(
           (modulePageNumber - 1) * 6,
@@ -25,9 +22,10 @@
         )"
         :key="module.id"
         :module="module"
+        :is-lead="+module.user.id === +$store.state.auth.user.id"
       />
     </div>
-    <div class="team-lead-modules-btn-grp">
+    <div class="module-lead-modules-btn-grp">
       <button
         v-if="Math.ceil(shownModules.length / 6) > 0"
         @click="previousModulesPage"
@@ -53,8 +51,8 @@
 </template>
 
 <script>
-import ModuleCard from "@/components/Home/Modules/ModuleCard.vue";
-import topbg from "@/assets/home/topbg.png";
+import ModuleCard from "@/components/Home/ModuleLeadViewComponents/Modules/ModuleCard.vue";
+import topbg from "@/assets/home/topbg.webp";
 export default {
   components: {
     ModuleCard,
@@ -84,7 +82,7 @@ export default {
   created() {
     this.shownModules = this.modules;
     this.shownModules.sort((a, b) => {
-      return a.createdAt >= b.createdAt ? 1 : -1;
+      return a.updatedAt >= b.updatedAt ? -1 : 1;
     });
   },
   methods: {
@@ -95,10 +93,8 @@ export default {
     previousModulesPage() {
       if (this.modulePageNumber > 1) this.modulePageNumber -= 1;
     },
-    openModuleCreationModal() {
-      this.$emit("openModuleCreationModal");
-    },
     searchModule() {
+      this.modulePageNumber = 1;
       const moduleRegex = new RegExp(`.*${this.searchTerm}.*`, "i");
       let list = [];
       this.modules.forEach((module) => {
@@ -126,7 +122,7 @@ export default {
 </script>
 
 <style lang="scss" scoped>
-.team-lead-modules {
+.module-lead-modules {
   display: flex;
   flex-direction: column;
   gap: 10px;
@@ -142,7 +138,7 @@ export default {
     min-height: 1180px;
   }
 
-  > .team-lead-modules-search {
+  > .module-lead-modules-search {
     display: flex;
     width: 100%;
     margin-bottom: 15px;
@@ -177,7 +173,7 @@ export default {
     }
   }
 
-  > .team-lead-modules-header {
+  > .module-lead-modules-header {
     font-size: 36px;
     color: white;
 
@@ -186,7 +182,7 @@ export default {
     }
   }
 
-  > .team-lead-modules-modules {
+  > .module-lead-modules-modules {
     display: flex;
     flex-wrap: wrap;
     gap: 25px;
@@ -196,7 +192,7 @@ export default {
     }
   }
 
-  > .team-lead-modules-btn-grp {
+  > .module-lead-modules-btn-grp {
     margin-top: auto;
     margin-bottom: 0;
     text-align: center;

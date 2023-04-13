@@ -22,7 +22,7 @@
       @createTag="createTag"
     />
     <div
-      v-if="isModuleCreationModalOpen"
+      v-if="isModuleCreationModalOpen || isModuleEditModalOpen"
       class="modal-overlay"
     />
   </div>
@@ -30,8 +30,8 @@
 
 <script>
 import { JWTIdentifier, serverBaseURL } from "@/utils/constants";
-import TeamLeadAllModules from "@/components/Home/Modules/TeamLeadAllModules.vue";
-import ModalContainer from "@/components/Home/Modules/ModalContainer.vue";
+import TeamLeadAllModules from "@/components/Home/TeamLeadViewComponents/Modules/TeamLeadAllModules.vue";
+import ModalContainer from "@/components/Home/TeamLeadViewComponents/Modules/ModalContainer.vue";
 import Employees from "@/components/Home/Employees/AllEmployees.vue";
 import Errors from "@/utils/errors";
 import router from "@/router";
@@ -88,15 +88,11 @@ export default {
         this.modules = modulesRes.data;
         this.modules = this.modules.map((m) => {
           m.createdAt = new Date(m.createdAt);
-          m.tags = m.module_tags.map((mt) =>
-            this.allTags.find((t) => t.id === mt.tag_id)
-          );
           m.lead_id = m.user.id;
-          delete m.module_tags;
           return m;
         });
       } else {
-        if (tagsResponse.status === 401) {
+        if (modulesResponse.status === 401) {
           alert(Errors.LoginExpired);
           localStorage.removeItem(JWTIdentifier);
           return router.push("/login");
@@ -115,7 +111,7 @@ export default {
       if (employeesRes.status && employeesRes.data.employees)
         this.allEmployees = employeesRes.data.employees;
       else {
-        if (tagsResponse.status === 401) {
+        if (employeesResponse.status === 401) {
           alert(Errors.LoginExpired);
           localStorage.removeItem(JWTIdentifier);
           return router.push("/login");
@@ -157,7 +153,6 @@ export default {
         name,
         createdAt: new Date(),
         tags,
-        link: "/authentication", // TO CHANGE WHEN PAGES GENERATED
         description,
         lead_id,
       };
