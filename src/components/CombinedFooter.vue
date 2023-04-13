@@ -28,8 +28,8 @@ export default {
 .combined-footer {
   /* margin-top: 1%; */
   background-color: #112f54;
-  height: auto;
-  width: 100%;
+  height: 6vh;
+  width: 100vw;
   display: flex;
   justify-content: space-between;
   color: #ffffff;
@@ -54,5 +54,16 @@ export default {
 .image {
   padding: 1%;
   width: 70%;
+}
+
+@media only screen and (max-width:800px) {
+  
+  .combined-footer {
+    height: 5vh;
+    font-size: 2vw;
+  }
+  .footer-logo {
+    width: 25%;
+  }
 }
 </style>
