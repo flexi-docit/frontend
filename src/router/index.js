@@ -102,10 +102,15 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/ResetPasswordView.vue"),
   },
   {
+    path: "/about",
+    name: "AboutPage",
+    component: () => import(/* webpackChunkName: "about" */ "../views/AboutPageView.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
     component: () =>
       import(/* webpackChunkName: "404" */ "../views/PageNotFoundView.vue"),
-  },
+  }
 ];
 
 const router = new VueRouter({
