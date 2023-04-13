@@ -2,7 +2,8 @@
   <header class="sticky">
     <nav class="navbar-desktop">
       <router-link to="/">
-        <img class = "logo"
+        <img
+          class="logo"
           :src="logo"
           alt="docit logo, click to go home"
         >
@@ -25,7 +26,10 @@
           &#8801;
         </button>
         <router-link to="/">
-          <img :src="logo" class = "logo">
+          <img
+            :src="logo"
+            class="logo"
+          >
         </router-link>
       </div>
       <div :class="`navbar-mobile-menu open-${menuOpen}`">
@@ -134,7 +138,7 @@ export default {
     .navbar-mobile-toggle {
       background-color: rgba(0, 0, 0, 0);
       border: none;
-      padding-left: 10px;      
+      padding-left: 10px;
       font-size: 35px;
       margin-right: 20px;
     }
