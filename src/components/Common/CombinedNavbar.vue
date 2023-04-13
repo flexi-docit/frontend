@@ -2,7 +2,7 @@
   <header class="sticky">
     <nav class="navbar-desktop">
       <router-link to="/">
-        <img
+        <img class = "logo"
           :src="logo"
           alt="docit logo, click to go home"
         >
@@ -25,7 +25,7 @@
           &#8801;
         </button>
         <router-link to="/">
-          <img :src="logo">
+          <img :src="logo" class = "logo">
         </router-link>
       </div>
       <div :class="`navbar-mobile-menu open-${menuOpen}`">
@@ -82,16 +82,16 @@ export default {
 }
 
 .navbar-desktop {
-  height: 90px;
+  height: 80px;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 15px 60px 15px 60px;
+  padding: 15px 60px 15px 30px;
   background-color: white;
-  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 1px 50px rgba(0, 0, 0, 0.3);
 
   > a > img {
-    width: 150px;
+    width: 100px;
   }
 
   @media screen and (max-width: 768px) {
@@ -113,9 +113,9 @@ export default {
     display: flex;
     flex-direction: column;
     padding: 0;
-    height: 85px;
+    height: 60px;
     background-color: white;
-    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    box-shadow: 0 5px 25px rgba(0, 0, 0, 0.5);
   }
 
   .navbar-mobile-default {
@@ -125,13 +125,17 @@ export default {
 
     > a > img {
       height: 100%;
-      width: 150px;
+      width: 200px;
+    }
+    .logo {
+      width: 100px;
     }
 
     .navbar-mobile-toggle {
       background-color: rgba(0, 0, 0, 0);
       border: none;
-      font-size: 40px;
+      padding-left: 10px;      
+      font-size: 35px;
       margin-right: 20px;
     }
   }
@@ -143,8 +147,8 @@ export default {
     align-items: flex-start;
     row-gap: 20px;
     width: 100vw;
-    height: calc(100vh - 85px);
-    margin-top: 85px;
+    height: calc(100vh - 60px);
+    margin-top: 60px;
     z-index: 2;
     opacity: 1;
     background-color: white;
