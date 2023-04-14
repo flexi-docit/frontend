@@ -1,21 +1,23 @@
 <template>
   <main class="login-container">
     <div class="login-container-left">
-      
-      <img :src="logoInvert" class="logo-icon-img">
-      <div class = "welcome"></div>
-      <div class = "link-info">
+      <img
+        :src="logoInvert"
+        class="logo-icon-img"
+      >
+      <div class="welcome" />
+      <div class="link-info">
         <h1>www.docit.com</h1>
       </div>
-
-
     </div>
     <form
       class="login-form"
       @submit.prevent="handleSubmit"
     >
-      <h1 class = "sign-in">Sign In</h1>
-     
+      <h1 class="sign-in">
+        Sign In
+      </h1>
+
       <input
         id="email"
         v-model.trim="email"
@@ -23,7 +25,7 @@
         type="email"
         placeholder="Enter Email"
       >
-     
+
       <input
         id="password"
         v-model.trim="password"
@@ -33,7 +35,10 @@
         required
       >
 
-      <router-link class = "forgot" to="/forgot-password">
+      <router-link
+        class="forgot"
+        to="/forgot-password"
+      >
         <p>Forgot Password?<br></p>
       </router-link>
       <button type="submit">
@@ -135,7 +140,7 @@ export default {
     @media only screen and (max-width: 1200px) {
       width: 50%;
     }
-    @media  only screen and (max-width: 768px) {
+    @media only screen and (max-width: 768px) {
       width: 100%;
     }
     > .sign-in {
@@ -146,20 +151,26 @@ export default {
     }
 
     > button {
-      background: linear-gradient(90deg, #112F54 -61.33%, #509EFF 116.56%);
+      background: linear-gradient(90deg, #112f54 -61.33%, #509eff 116.56%);
       color: white;
       border: none;
       border-radius: none;
       width: 100%;
       min-height: 40px;
       margin-top: 40px;
+
+      
     }
+
+    > button:hover {
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.25);
+      }
 
     > input {
       background-color: #ffff;
       outline: 0;
       border-width: 0 0 3px;
-      border-color: linear-gradient(90deg, #112F54 -61.33%, #509EFF 116.56%);
+      border-color: linear-gradient(90deg, #112f54 -61.33%, #509eff 116.56%);
       width: 100%;
       padding: 20px 0px;
       margin: 0px;
@@ -177,12 +188,12 @@ export default {
 
   > .login-container-left {
     width: 70%;
-    padding:5rem;
+    padding: 5rem;
     align-content: left;
     text-align: left;
     background-image: url("../assets/login/bg.svg");
     background-size: fit;
-    background-repeat: no-repeat; 
+    background-repeat: no-repeat;
     @media screen and (max-width: 768px) {
       display: none;
     }
@@ -199,7 +210,6 @@ export default {
       @media only screen and (max-width: 1200px) {
         height: 80%;
       }
-
     }
     .welcome h1 {
       color: white;
@@ -207,7 +217,7 @@ export default {
       font-size: 2.5rem;
     }
 
-    img{
+    img {
       padding: none;
       width: 10vw;
     }

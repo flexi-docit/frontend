@@ -139,8 +139,12 @@ export default {
 
       > button {
         font-size: 1.2em;
-        background-color: #f6c6a3;
+        background: linear-gradient(90deg, #112f54 -61.33%, #509eff 116.56%);
+        color: white;
         border: none;
+        border-radius: none;
+        width: 100%;
+
         padding: $button-padding;
       }
 

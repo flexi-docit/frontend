@@ -42,10 +42,8 @@ export default {
         {
           fname: "Aditya",
           last: "Desai",
-          designation: "DOCUMENTATION HEAD",
+          designation: "DOCUMENTATION & BACKEND ENGINEER",
           avatar: aditya,
-          about:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. In aut expedita ad. Doloribus tempore laudantium nulla placeat. Ducimus vel optio corrupti eaque, maxime, dignissimos fugit tempore totam accusantium at voluptates nihil! Minus quo tempore saepe amet autem corrupti nostrum esse, modi laboriosam soluta? Beatae ex consectetur nisi omnis perferendis porro adipisci quod nemo dignissimos debitis asperiores, cumque eaque cupiditate reiciendis provident numquam ullam, laboriosam dolor vero! Ut quam neque repudiandae consequuntur laudantium asperiores impedit voluptates. Aliquam, ab. Eligendi ipsa atque eius minima velit? Veniam sint error inventore maxime mollitia, delectus perferendis culpa blanditiis magni, odit veritatis, non modi. Odio repellendus molestias nisi dolore obcaecati quae dolores totam nam? Sapiente voluptatum libero officiis magni, atque enim aliquam amet nam non aut dicta eum perferendis provident nisi itaque mollitia quae quas fugit qui quis neque. Consequuntur consectetur a dolores possimus nobis aspernatur quos! Incidunt provident ipsam veritatis praesentium numquam reiciendis dolorum maxime?",
           instagram: "https://www.instagram.com/",
           linkedin: "https://www.linkedin.com/in/aditya-desai-/",
           github: "https://www.github.com/AdityaDesai006",
@@ -54,10 +52,8 @@ export default {
         {
           fname: "Antriksh",
           last: "Sharma",
-          designation: "UI/UX FRONTEND ENGINEER",
+          designation: "UI/UX & FRONTEND ENGINEER",
           avatar: antriksh,
-          about:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. In aut expedita ad. Doloribus tempore laudantium nulla placeat. Ducimus vel optio corrupti eaque, maxime, dignissimos fugit tempore totam accusantium at voluptates nihil! Minus quo tempore saepe amet autem corrupti nostrum esse, modi laboriosam soluta? Beatae ex consectetur nisi omnis perferendis porro adipisci quod nemo dignissimos debitis asperiores, cumque eaque cupiditate reiciendis provident numquam ullam, laboriosam dolor vero! Ut quam neque repudiandae consequuntur laudantium asperiores impedit voluptates. Aliquam, ab. Eligendi ipsa atque eius minima velit? Veniam sint error inventore maxime mollitia, delectus perferendis culpa blanditiis magni, odit veritatis, non modi. Odio repellendus molestias nisi dolore obcaecati quae dolores totam nam? Sapiente voluptatum libero officiis magni, atque enim aliquam amet nam non aut dicta eum perferendis provident nisi itaque mollitia quae quas fugit qui quis neque. Consequuntur consectetur a dolores possimus nobis aspernatur quos! Incidunt provident ipsam veritatis praesentium numquam reiciendis dolorum maxime?",
           instagram: "https://www.instagram.com/chrometrooper",
           linkedin: "https://www.linkedin.com/in/antriksh-sharma-964bb2166/",
           github: "https://www.github.com/AntrikshSharma",
@@ -68,8 +64,6 @@ export default {
           last: "Shukla",
           designation: "BACKEND ENGINEER",
           avatar: achyut,
-          about:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. In aut expedita ad. Doloribus tempore laudantium nulla placeat. Ducimus vel optio corrupti eaque, maxime, dignissimos fugit tempore totam accusantium at voluptates nihil! Minus quo tempore saepe amet autem corrupti nostrum esse, modi laboriosam soluta? Beatae ex consectetur nisi omnis perferendis porro adipisci quod nemo dignissimos debitis asperiores, cumque eaque cupiditate reiciendis provident numquam ullam, laboriosam dolor vero! Ut quam neque repudiandae consequuntur laudantium asperiores impedit voluptates. Aliquam, ab. Eligendi ipsa atque eius minima velit? Veniam sint error inventore maxime mollitia, delectus perferendis culpa blanditiis magni, odit veritatis, non modi. Odio repellendus molestias nisi dolore obcaecati quae dolores totam nam? Sapiente voluptatum libero officiis magni, atque enim aliquam amet nam non aut dicta eum perferendis provident nisi itaque mollitia quae quas fugit qui quis neque. Consequuntur consectetur a dolores possimus nobis aspernatur quos! Incidunt provident ipsam veritatis praesentium numquam reiciendis dolorum maxime?",
           instagram: "https://www.instagram.com/__achyut.07__",
           linkedin: "https://www.linkedin.com/in/achyut07",
           github: "https://www.github.com/Achyut-0705",
@@ -80,8 +74,6 @@ export default {
           last: "Inamdar",
           designation: "FRONTEND ENGINEER",
           avatar: ojas,
-          about:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. In aut expedita ad. Doloribus tempore laudantium nulla placeat. Ducimus vel optio corrupti eaque, maxime, dignissimos fugit tempore totam accusantium at voluptates nihil! Minus quo tempore saepe amet autem corrupti nostrum esse, modi laboriosam soluta? Beatae ex consectetur nisi omnis perferendis porro adipisci quod nemo dignissimos debitis asperiores, cumque eaque cupiditate reiciendis provident numquam ullam, laboriosam dolor vero! Ut quam neque repudiandae consequuntur laudantium asperiores impedit voluptates. Aliquam, ab. Eligendi ipsa atque eius minima velit? Veniam sint error inventore maxime mollitia, delectus perferendis culpa blanditiis magni, odit veritatis, non modi. Odio repellendus molestias nisi dolore obcaecati quae dolores totam nam? Sapiente voluptatum libero officiis magni, atque enim aliquam amet nam non aut dicta eum perferendis provident nisi itaque mollitia quae quas fugit qui quis neque. Consequuntur consectetur a dolores possimus nobis aspernatur quos! Incidunt provident ipsam veritatis praesentium numquam reiciendis dolorum maxime?",
           instagram: "https://www.instagram.com/__ojas__",
           linkedin: "https://www.linkedin.com/in/ojas-inamdar",
           github: "https://www.github.com/TDP17",
@@ -92,8 +84,6 @@ export default {
           last: "Muralidharan",
           designation: "FRONTEND ENGINEER",
           avatar: anupam,
-          about:
-            "Lorem ipsum dolor sit amet consectetur adipisicing elit. In aut expedita ad. Doloribus tempore laudantium nulla placeat. Ducimus vel optio corrupti eaque, maxime, dignissimos fugit tempore totam accusantium at voluptates nihil! Minus quo tempore saepe amet autem corrupti nostrum esse, modi laboriosam soluta? Beatae ex consectetur nisi omnis perferendis porro adipisci quod nemo dignissimos debitis asperiores, cumque eaque cupiditate reiciendis provident numquam ullam, laboriosam dolor vero! Ut quam neque repudiandae consequuntur laudantium asperiores impedit voluptates. Aliquam, ab. Eligendi ipsa atque eius minima velit? Veniam sint error inventore maxime mollitia, delectus perferendis culpa blanditiis magni, odit veritatis, non modi. Odio repellendus molestias nisi dolore obcaecati quae dolores totam nam? Sapiente voluptatum libero officiis magni, atque enim aliquam amet nam non aut dicta eum perferendis provident nisi itaque mollitia quae quas fugit qui quis neque. Consequuntur consectetur a dolores possimus nobis aspernatur quos! Incidunt provident ipsam veritatis praesentium numquam reiciendis dolorum maxime?",
           instagram: "https://www.instagram.com/anupam0__0",
           linkedin: "https://www.linkedin.com/in/anupam-muralidharan",
           github: "https://www.github.com/anu-10",
