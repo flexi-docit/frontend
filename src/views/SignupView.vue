@@ -75,7 +75,7 @@ export default {
         },
         body: JSON.stringify(data),
       });
-      if(response.ok) alert("Registered");
+      if (response.ok) alert("Registered");
     },
   },
 };
