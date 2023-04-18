@@ -171,6 +171,12 @@ const routes = [
       import(/* webpackChunkName: "about" */ "../views/ContactPageView.vue"),
   },
   {
+    path: "/signup",
+    name: "signup",
+    component: () =>
+      import(/* webpackChunkName: "404" */ "../views/SignupView.vue"),
+  },
+  {
     path: "/:pathMatch(.*)*",
     component: () =>
       import(/* webpackChunkName: "404" */ "@/views/PageNotFoundView.vue"),

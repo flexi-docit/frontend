@@ -1,23 +1,34 @@
 <template>
   <div class="container-container">
-    <section class="single-module-top" :style="topStyle">
+    <section
+      class="single-module-top"
+      :style="topStyle"
+    >
       <h1 class="single-module-top-header">
         {{ moduleName }}
       </h1>
-      <p class="lead">Module Lead - {{ moduleLeadName }}</p>
+      <p class="lead">
+        Module Lead - {{ moduleLeadName }}
+      </p>
     </section>
     <section class="single-module-container">
       <div class="single-module-index" />
       <div class="single-module-main">
         <div class="single-module-editbar">
           <div class="document-search">
-            <input placeholder="Search" />
+            <input placeholder="Search">
             <span>&#8981;</span>
           </div>
-          <button class="edit-btn" @click="isEditing = !isEditing">
+          <button
+            class="edit-btn"
+            @click="isEditing = !isEditing"
+          >
             <font-awesome-icon icon="fa fa-edit" />
           </button>
-          <button class="open-employees-btn" @click="elOpen = !elOpen">
+          <button
+            class="open-employees-btn"
+            @click="elOpen = !elOpen"
+          >
             <font-awesome-icon icon="fa-solid fa-user" />
           </button>
         </div>
@@ -25,10 +36,18 @@
           class="single-module-preview-bar"
           :style="{ display: `${isEditing ? 'flex' : 'none'}` }"
         >
-          <button class="hide" @click="isPreviewShown = !isPreviewShown">
+          <button
+            class="hide"
+            @click="isPreviewShown = !isPreviewShown"
+          >
             {{ isPreviewShown ? "Hide Preview" : "Show Preview" }}
           </button>
-          <button class="save" @click="submitDocument">Save</button>
+          <button
+            class="save"
+            @click="submitDocument"
+          >
+            Save
+          </button>
         </div>
         <section class="document-editing-section">
           <textarea
@@ -56,7 +75,12 @@
             : 'single-module-employees-inactive'
         "
       >
-        <p style="cursor: pointer" @click="elOpen = false">&#10006;</p>
+        <p
+          style="cursor: pointer"
+          @click="elOpen = false"
+        >
+          &#10006;
+        </p>
         <h3 style="text-align: center; color: #acb7c1; font-weight: 700">
           EMPLOYEES
         </h3>
@@ -71,10 +95,10 @@
                 idx % 3 == 0
                   ? 'https://www.w3schools.com/w3images/avatar2.png'
                   : idx % 3 == 1
-                  ? 'https://cdn-icons-png.flaticon.com/512/168/168724.png'
-                  : 'https://www.w3schools.com/howto/img_avatar.png'
+                    ? 'https://cdn-icons-png.flaticon.com/512/168/168724.png'
+                    : 'https://www.w3schools.com/howto/img_avatar.png'
               "
-            />
+            >
             <h3 class="emp-details">
               {{ emp.name }}
               <small>
@@ -83,7 +107,10 @@
             </h3>
           </div>
         </div>
-        <button class="add-employee-btn" @click="addEmployeeToModule">
+        <button
+          class="add-employee-btn"
+          @click="addEmployeeToModule"
+        >
           Add
         </button>
       </section>
