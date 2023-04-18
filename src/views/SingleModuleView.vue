@@ -46,8 +46,8 @@ MarkedJS - [NPM](https://www.npmjs.com/package/marked)
     const jwt = localStorage.getItem(JWTIdentifier);
 
     try {
-      const getAllTagsURL = `${serverBaseURL}/api/v1/module/${this.$route.params.id}`;
-      const moduleResponse = await fetch(getAllTagsURL, {
+      const getModuleURL = `${serverBaseURL}/api/v1/module/${this.$route.params.id}`;
+      const moduleResponse = await fetch(getModuleURL, {
         method: "GET",
         headers: {
           Authorization: `Bearer ${jwt}`,
