@@ -8,6 +8,7 @@ import { mutationNames } from "./store/mutationTypes";
 import { FontAwesomeIcon } from "@fortawesome/vue-fontawesome";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { faUser, faEdit } from "@fortawesome/free-solid-svg-icons";
+import "./registerServiceWorker";
 
 library.add(faUser);
 library.add(faEdit);
