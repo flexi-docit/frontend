@@ -21,24 +21,7 @@ export default {
       moduleName: "",
       moduleLeadName: "",
       createdAt: new Date(),
-      documentMarkdown: `
-## Common git commands
-- We will be dealing with basic commands only\n
-| Command | Description |
-| --- | --- |
-| git status | List all new or modified files |
-| git diff | Show file differences that haven't been staged |\n
-<details>
-
-<summary>Links to resources</summary>
-
-MarkedJS - [NPM](https://www.npmjs.com/package/marked)
-</details>\n
-
-### Also go through
-- [ ] Github markdown
-- [ ] About Us
-`,
+      documentMarkdown: ``,
       // moduleMarkdown: "### This is a dummy heading\n - This is a bullet pt\n - This is another bullet point\n ```function test() {console.log(\"notice the blank line before this function?\");}```",
     };
   },
@@ -64,6 +47,18 @@ MarkedJS - [NPM](https://www.npmjs.com/package/marked)
           localStorage.removeItem(JWTIdentifier);
           return router.push("/login");
         } else alert(Errors.InternalServerError);
+      }
+
+      const getModuleMarkdownURL = `${serverBaseURL}/api/v1/document/${this.$route.params.id}`;
+      const markdownResponse = await fetch(getModuleMarkdownURL, {
+        method: "GET",
+        headers: {
+          Authorization: `Bearer ${jwt}`,
+        },
+      });
+      const markdownRes = await markdownResponse.json();
+      if (markdownRes.markdown) {
+        this.documentMarkdown = markdownRes.markdown;
       }
     } catch (error) {
       console.error(error);
