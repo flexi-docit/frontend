@@ -1,14 +1,22 @@
 <template>
   <main class="login-container">
     <div class="login-container-left">
-      <img :src="logoInvert" class="logo-icon-img" />
+      <img
+        :src="logoInvert"
+        class="logo-icon-img"
+      >
       <div class="welcome" />
       <div class="link-info">
         <h1>www.docit.com</h1>
       </div>
     </div>
-    <form class="login-form" @submit.prevent="handleSubmit">
-      <h1 class="sign-in">Sign In</h1>
+    <form
+      class="login-form"
+      @submit.prevent="handleSubmit"
+    >
+      <h1 class="sign-in">
+        Sign In
+      </h1>
 
       <input
         id="email"
@@ -16,7 +24,7 @@
         class="login-input"
         type="email"
         placeholder="Enter Email"
-      />
+      >
 
       <input
         id="password"
@@ -25,14 +33,22 @@
         type="password"
         placeholder="Enter Password"
         required
-      />
+      >
 
-      <router-link class="forgot" to="/forgot-password">
-        <p>Forgot Password?<br /></p>
+      <router-link
+        class="forgot"
+        to="/forgot-password"
+      >
+        <p>Forgot Password?<br></p>
       </router-link>
-      <button type="submit">SIGN IN</button>
-      <router-link class="forgot" to="/forgot-password">
-        <p>Signup<br /></p>
+      <button type="submit">
+        SIGN IN
+      </button>
+      <router-link
+        class="btn-signup"
+        to="/forgot-password"
+      >
+        <p>SIGN UP<br></p>
       </router-link>
     </form>
   </main>
@@ -174,6 +190,18 @@ export default {
       width: 100%;
       margin-top: 20px;
       color: #9e9e9e;
+    }
+    > .btn-signup {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: linear-gradient(90deg, #112f54 -61.33%, #509eff 116.56%);
+      color: white;
+      border: none;
+      border-radius: none;
+      width: 100%;
+      min-height: 40px;
+      margin-top: 10px;
     }
   }
 
