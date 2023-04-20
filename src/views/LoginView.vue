@@ -1,22 +1,14 @@
 <template>
   <main class="login-container">
     <div class="login-container-left">
-      <img
-        :src="logoInvert"
-        class="logo-icon-img"
-      >
+      <img :src="logoInvert" class="logo-icon-img" />
       <div class="welcome" />
       <div class="link-info">
         <h1>www.docit.com</h1>
       </div>
     </div>
-    <form
-      class="login-form"
-      @submit.prevent="handleSubmit"
-    >
-      <h1 class="sign-in">
-        Sign In
-      </h1>
+    <form class="login-form" @submit.prevent="handleSubmit">
+      <h1 class="sign-in">Sign In</h1>
 
       <input
         id="email"
@@ -24,7 +16,7 @@
         class="login-input"
         type="email"
         placeholder="Enter Email"
-      >
+      />
 
       <input
         id="password"
@@ -33,17 +25,15 @@
         type="password"
         placeholder="Enter Password"
         required
-      >
+      />
 
-      <router-link
-        class="forgot"
-        to="/forgot-password"
-      >
-        <p>Forgot Password?<br></p>
+      <router-link class="forgot" to="/forgot-password">
+        <p>Forgot Password?<br /></p>
       </router-link>
-      <button type="submit">
-        SIGN IN
-      </button>
+      <button type="submit">SIGN IN</button>
+      <router-link class="forgot" to="/forgot-password">
+        <p>Signup<br /></p>
+      </router-link>
     </form>
   </main>
 </template>
@@ -78,6 +68,9 @@ export default {
       try {
         const response = await fetch(url, {
           method: "POST",
+          mode: "cors", // no-cors, *cors, same-origin
+          cache: "no-cache", // *default, no-cache, reload, force-cache, only-if-cached
+          credentials: "same-origin",
           headers: {
             "Content-Type": "application/json",
           },

@@ -1,4 +1,4 @@
-export const serverBaseURL = "http://localhost:8000";
+export const serverBaseURL = "https://docit-backend-flexi.herokuapp.com";
 
 export const JWTIdentifier = "d_token";
 

@@ -2,56 +2,34 @@
   <header class="sticky">
     <nav class="navbar-desktop">
       <router-link to="/">
-        <img
-          class="logo"
-          :src="logo"
-          alt="docit logo, click to go home"
-        >
+        <img class="logo" :src="logo" alt="docit logo, click to go home" />
       </router-link>
       <div class="navbar-desktop-menu">
-        <router-link to="/about">
-          About
-        </router-link>
-        <router-link to="/contact">
-          Contact
-        </router-link>
+        <router-link to="/about"> About </router-link>
+        <router-link to="/contact"> Contact </router-link>
+        <router-link to="/signup"> Signup </router-link>
+        <a @click="logout"> Signout </a>
       </div>
     </nav>
     <nav class="navbar-mobile">
       <div class="navbar-mobile-default">
-        <button
-          class="navbar-mobile-toggle"
-          @click="toggleMenu"
-        >
+        <button class="navbar-mobile-toggle" @click="toggleMenu">
           &#8801;
         </button>
         <router-link to="/">
-          <img
-            :src="logo"
-            class="logo"
-          >
+          <img :src="logo" class="logo" />
         </router-link>
       </div>
       <div :class="`navbar-mobile-menu open-${menuOpen}`">
-        <router-link
-          to="/"
-          exact
-          @click.native="closeMenu"
-        >
-          Home
-        </router-link>
-        <router-link
-          to="/about"
-          @click.native="closeMenu"
-        >
-          About
-        </router-link>
-        <router-link
-          to="/contact"
-          @click.native="closeMenu"
-        >
+        <router-link to="/" exact @click.native="closeMenu"> Home </router-link>
+        <router-link to="/about" @click.native="closeMenu"> About </router-link>
+        <router-link to="/contact" @click.native="closeMenu">
           Contact
         </router-link>
+        <router-link to="/signup" @click.native="closeMenu">
+          Signup
+        </router-link>
+        <a @click="logout"> Signout </a>
       </div>
     </nav>
   </header>
@@ -59,6 +37,8 @@
 
 <script>
 import logo from "@/assets/common/logo-name.svg";
+import router from "@/router";
+import { JWTIdentifier } from "@/utils/constants";
 
 export default {
   data() {
@@ -73,6 +53,10 @@ export default {
     },
     closeMenu() {
       this.menuOpen = false;
+    },
+    logout() {
+      localStorage.removeItem(JWTIdentifier);
+      router.push("/login");
     },
   },
 };

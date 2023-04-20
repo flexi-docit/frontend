@@ -59,9 +59,9 @@ export default {
       else if (this.fullName == "") alert("Full Name cannot be empty!");
       else if (this.password == "") alert("Password cannot be empty!");
       else if (this.confirmPassword == "")
-        alert("Confirm Password cannot be empty!");
+        return alert("Confirm Password cannot be empty!");
       if (this.password != this.confirmPassword)
-        alert("Passwords do not match!");
+        return alert("Passwords do not match!");
       const data = {
         email: this.email,
         password: this.password,

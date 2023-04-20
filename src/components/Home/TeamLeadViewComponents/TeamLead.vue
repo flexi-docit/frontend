@@ -156,6 +156,7 @@ export default {
         description,
         lead_id,
       };
+      console.log(newModule);
       this.modules.push(newModule);
     },
     createTag(tag) {
